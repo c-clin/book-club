@@ -28,9 +28,7 @@ class Login extends Component {
         <form className="col s6">
           <div className="row">
             <div className="input-field col s8">
-              <i className="material-icons prefix">email</i>
               <input
-                id="icon_prefix"
                 type="email"
                 name="email"
                 className="validate"
@@ -39,9 +37,7 @@ class Login extends Component {
               <label className="active">Email</label>
             </div>
             <div className="input-field col s8">
-              <i className="material-icons prefix">account_circle</i>
               <input
-                id="icon_prefix"
                 type="password"
                 name="password"
                 className="validate"

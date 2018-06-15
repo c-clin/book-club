@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
+import _ from 'lodash';
 
 const initialState = {
   isAuthenticated: false,
@@ -10,7 +11,7 @@ export default function(state = initialState, action) {
     case actionTypes.SET_CURRENT_USER:
       return {
         ...state,
-        isAuthenticated: Boolean(action.payload),
+        isAuthenticated: !_.isEmpty(action.payload),
         userName: action.payload.name
       };
     default:

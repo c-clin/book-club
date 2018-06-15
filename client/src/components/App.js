@@ -5,6 +5,17 @@ import Dashboard from './Dashboard';
 import Landing from './Landing';
 import Login from './Login';
 
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import * as actions from '../store/actions/';
+import store from '../store/store';
+
+if (localStorage.jwtToken) {
+  axios.defaults.headers.common['Authorization'] = localStorage.jwtToken;
+  const decoded = jwt_decode(localStorage.jwtToken);
+  store.dispatch(actions.setCurrentUser(decoded));
+}
+
 const SignUp = () => <h3>Sign up Page</h3>;
 
 class App extends Component {

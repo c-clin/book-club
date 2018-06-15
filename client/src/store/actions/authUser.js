@@ -20,16 +20,17 @@ export const loginUser = (userData, history) => {
         localStorage.setItem('jwtToken', token);
         axios.defaults.headers.common['Authorization'] = token;
         const decoded = jwt_decode(token);
-        console.log(decoded);
         dispatch(setCurrentUser(decoded));
+        console.log(decoded);
         history.push('/dashboard');
       })
       .catch(err => console.log(err));
   };
 };
 
-// const logoutUser = () => dispatch => {
-//     localStorage.removeItem('jwtToken');
-//     setAuthToken(false);
-
-// };
+export const logoutUser = () => dispatch => {
+  console.log('logging out');
+  localStorage.removeItem('jwtToken');
+  delete axios.defaults.headers.common['Authorization'];
+  dispatch(setCurrentUser({}));
+};
