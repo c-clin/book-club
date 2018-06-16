@@ -7,10 +7,6 @@ const passport = require('passport');
 const keys = require('../config/keys');
 const User = require('../models/User');
 
-router.get('/test', (req, res) => {
-  res.send('user works');
-});
-
 // @route   Post api/user/register
 // @desc    Register User
 // access   Public

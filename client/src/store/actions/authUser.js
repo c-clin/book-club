@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import axios from '../../axios-auth';
+import axios from '../../axios-api';
 import jwt_decode from 'jwt-decode';
 
 // set logged in user
@@ -13,7 +13,7 @@ export const setCurrentUser = decoded => {
 export const loginUser = (userData, history) => {
   return dispatch => {
     axios
-      .post('/login', userData)
+      .post('/user/login', userData)
       .then(res => {
         const { token } = res.data;
         localStorage.setItem('jwtToken', token);
@@ -36,7 +36,7 @@ export const logoutUser = () => dispatch => {
 
 export const registerUser = (userData, history) => dispatch => {
   axios
-    .post('/register', userData)
+    .post('/user/register', userData)
     .then(res => {
       console.log(res.data);
       alert(

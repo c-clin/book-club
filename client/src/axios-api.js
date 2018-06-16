@@ -1,6 +1,6 @@
 import axios from 'axios';
 const authInstance = axios.create({
-  baseURL: `/api/user`,
+  baseURL: `/api`,
   headers: {
     Authorization: ''
   }
