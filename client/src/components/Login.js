@@ -19,7 +19,6 @@ class Login extends Component {
       password: this.state.password
     };
     this.props.onLogin(userData, this.props.history);
-    this.setState({ email: '', password: '' });
   };
 
   render() {

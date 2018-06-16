@@ -13,7 +13,6 @@ class Landing extends Component {
 
   searchBookHandler = () => {
     this.props.onSearchBook(this.state.query);
-    this.setState({ query: '' });
     this.props.history.push('/search');
   };
 

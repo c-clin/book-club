@@ -7,7 +7,7 @@ import Login from './Login';
 import Register from './Register';
 import BookResult from './books/BookResult';
 
-import axios from 'axios';
+import axios from '../axios-auth';
 import jwt_decode from 'jwt-decode';
 import * as actions from '../store/actions/';
 import store from '../store/store';

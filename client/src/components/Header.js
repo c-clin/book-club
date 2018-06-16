@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logoutUser } from '../store/actions';
+import * as actions from '../store/actions';
 
 class Header extends Component {
+  state = {
+    query: ''
+  };
+
+  inputChangeHandler = event => {
+    this.setState({ query: event.target.value });
+  };
+
+  searchBookHandler = () => {
+    this.props.onSearchBook(this.state.query);
+    this.props.history.push('/search');
+    this.setState({ query: '' });
+  };
+
   logoutHandler = e => {
     e.preventDefault();
     console.log('logout clicked');
-    this.props.logoutUser();
+    this.props.onLogout();
   };
 
   render() {
@@ -49,8 +63,24 @@ class Header extends Component {
           <Link to="/" className="left brand-logo">
             Book Club
           </Link>
-
           {this.props.auth.isAuthenticated ? authLinks : guestLinks}
+          <ul className="right">
+            <li>
+              <input
+                type="text"
+                onChange={this.inputChangeHandler}
+                style={{ width: '150px' }}
+                value={this.state.query}
+              />
+              <i
+                className="material-icons right"
+                onClick={this.searchBookHandler}
+                style={{ marginLeft: '0', cursor: 'pointer' }}
+              >
+                search
+              </i>
+            </li>
+          </ul>
         </div>
       </nav>
     );
@@ -63,7 +93,14 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    onSearchBook: search => dispatch(actions.onFetchBook(search)),
+    onLogout: () => dispatch(actions.logoutUser())
+  };
+};
+
 export default connect(
   mapStateToProps,
-  { logoutUser }
-)(Header);
+  mapDispatchToProps
+)(withRouter(Header));

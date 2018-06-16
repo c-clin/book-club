@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import axios from 'axios';
+import axios from '../../axios-auth';
 import jwt_decode from 'jwt-decode';
 
 // set logged in user
@@ -13,10 +13,9 @@ export const setCurrentUser = decoded => {
 export const loginUser = (userData, history) => {
   return dispatch => {
     axios
-      .post('/api/user/login', userData)
+      .post('/login', userData)
       .then(res => {
         const { token } = res.data;
-        // const token = res.data.token;
         localStorage.setItem('jwtToken', token);
         axios.defaults.headers.common['Authorization'] = token;
         const decoded = jwt_decode(token);
@@ -37,7 +36,7 @@ export const logoutUser = () => dispatch => {
 
 export const registerUser = (userData, history) => dispatch => {
   axios
-    .post('/api/user/register', userData)
+    .post('/register', userData)
     .then(res => {
       console.log(res.data);
       alert(

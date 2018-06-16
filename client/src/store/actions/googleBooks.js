@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import axios from 'axios';
+import axios from '../../axios-books';
 
 export const fetchBook = data => {
   return {
@@ -8,10 +8,14 @@ export const fetchBook = data => {
   };
 };
 
+// `?q=${query}&key=AIzaSyCz-ivXjqdYUNr9T3Vpgg8oQkf7ZV7WoQM`;
 export const onFetchBook = query => {
   return dispatch => {
-    axios
-      .get(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
+    axios({
+      method: 'get',
+      url: `?q=${query}`,
+      headers: {}
+    })
       .then(res => {
         // console.log(res.data.items);
         let counter = 0;
@@ -20,8 +24,8 @@ export const onFetchBook = query => {
           bookList.push({
             title: res.data.items[counter].volumeInfo.title,
             author: res.data.items[counter].volumeInfo.authors,
-            link: res.data.items[counter].selfLink,
-            image: res.data.items[counter].volumeInfo.imageLinks.thumbnail
+            link: res.data.items[counter].volumeInfo.infoLink,
+            image: res.data.items[counter].volumeInfo.imageLinks.thumbnail || ''
           });
           counter++;
         }
