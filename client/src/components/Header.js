@@ -35,6 +35,16 @@ class Header extends Component {
           ) : null}
         </li>
         <li>
+          <Link to="/dashboard" className="right">
+            My Books
+          </Link>
+        </li>
+        <li>
+          <a href="" className="right">
+            All Books
+          </a>
+        </li>
+        <li>
           <a href="" onClick={this.logoutHandler}>
             Logout
           </a>

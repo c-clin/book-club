@@ -10,7 +10,7 @@ const BookResult = props => {
   //   <button onClick={props.onAddBook(...props)}>Add Book</button>
   // ) : null;
 
-  const renderContent = props.books.bookList.map(book => {
+  const renderContent = props.books.searchList.map(book => {
     return (
       <div>
         <BookResultItem
@@ -21,7 +21,6 @@ const BookResult = props => {
           apiID={book.apiID}
           image={book.image}
         />
-        {/* {addBookBtn} */}
       </div>
     );
   });

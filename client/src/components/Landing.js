@@ -22,20 +22,24 @@ class Landing extends Component {
         <div className="row">
           <form className="col s12">
             <div className="row">
-              <div className="input-field col s6">
-                <input
-                  type="text"
-                  value={this.state.query}
-                  onChange={this.inputChangeHandler}
-                />
-                <button
-                  className="btn waves-effect waves-light"
-                  type="button"
-                  onClick={this.searchBookHandler}
-                >
-                  Submit
-                  <i className="material-icons right">send</i>
-                </button>
+              <div className="input-field col s6 offset-s3">
+                <div>
+                  <input
+                    type="text"
+                    value={this.state.query}
+                    onChange={this.inputChangeHandler}
+                  />
+                  <span>
+                    <button
+                      className="btn waves-effect waves-light"
+                      type="button"
+                      onClick={this.searchBookHandler}
+                    >
+                      Search
+                      <i className="material-icons right">send</i>
+                    </button>
+                  </span>
+                </div>
               </div>
             </div>
           </form>

@@ -4,9 +4,20 @@ const router = express.Router();
 const Book = require('../models/Book');
 const passport = require('passport');
 
+// @route   Get api/books/my-list
+// @desc    Load user's book list
+// access   Private
+router.get(
+  '/my-list',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Book.find({ _user: req.user.id }).then(books => res.send(books));
+  }
+);
+
 // @route   Post api/books/add-book
-// @desc    Register User
-// access   Public
+// @desc    Add book to user's list
+// access   Private
 router.post(
   '/add-book',
   passport.authenticate('jwt', { session: false }),

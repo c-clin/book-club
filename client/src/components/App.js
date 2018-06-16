@@ -33,7 +33,6 @@ class App extends Component {
               <Route exact path="/" component={Landing} />
               {/* list of all books for trade  */}
               {/* user's own list of books for trade */}
-              {/* page showing the search book results */}
             </div>
           </div>
         </BrowserRouter>

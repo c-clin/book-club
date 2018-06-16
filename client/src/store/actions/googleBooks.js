@@ -8,8 +8,22 @@ const no_image_url =
 export const fetchBook = data => {
   return {
     type: actionTypes.SEARCH_BOOK,
-    bookList: data
+    searchList: data
   };
+};
+
+export const onLoadList = () => dispatch => {
+  axiosApi
+    .get('/books/my-list', {
+      headers: { Authorization: localStorage.jwtToken }
+    })
+    .then(res =>
+      dispatch({
+        type: actionTypes.LOAD_BOOK_LIST,
+        bookList: res.data
+      })
+    )
+    .catch(err => console.log(err));
 };
 
 export const onFetchBook = query => {
