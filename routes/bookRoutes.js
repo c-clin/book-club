@@ -34,18 +34,13 @@ router.post(
             imgURL,
             apiID,
             _user: req.user.id
-            // status: 'unavailable'
           });
-          console.log(book);
-
           try {
             book.save();
             res.send('save success');
           } catch (err) {
             res.status(422).send(err);
           }
-
-          console.log(book);
         }
       })
       .catch(err => console.log(err));
@@ -61,7 +56,6 @@ router.post(
   (req, res) => {
     const { _user, apiID, status } = req.body;
     let newStatus = status === 'not-available' ? 'available' : 'not-available';
-    res.send(_user, apiID, newStatus);
 
     Book.findOneAndUpdate(
       { _user, apiID },

@@ -3,9 +3,17 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 
 const BookTradeItem = props => {
-  let tradeBtn = props.auth.isAuthenticated ? (
-    <button onClick={() => props.onAddBook(props)}>Trade</button>
-  ) : null;
+  let tradeBtn =
+    props.auth.isAuthenticated && props.status === 'available' ? (
+      <button onClick={() => props.onTradeBook(props)}>Trade</button>
+    ) : null;
+
+  let onHoldText =
+    props.auth.isAuthenticated && props.status === 'pending' ? (
+      <div className="purple-text text-purple lighten-2">
+        <p>On Hold</p>
+      </div>
+    ) : null;
 
   return (
     <div style={{ width: '400px' }}>
@@ -16,6 +24,7 @@ const BookTradeItem = props => {
       </p>
       <img src={props.image} alt={props.title} width="128" />
       {tradeBtn}
+      {onHoldText}
     </div>
   );
 };
@@ -29,7 +38,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddBook: bookData => dispatch(actions.onAddBook(bookData))
+    onTradeBook: props => dispatch(actions.onTradeRequest(props))
   };
 };
 

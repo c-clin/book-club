@@ -19,6 +19,8 @@ export class BooksForTrade extends Component {
           apiID={book.apiID}
           image={book.imgURL}
           status={book.status}
+          owner={book._user}
+          bookID={book._id}
         />
       );
     });

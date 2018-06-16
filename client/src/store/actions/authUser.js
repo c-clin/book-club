@@ -28,7 +28,6 @@ export const loginUser = (userData, history) => {
 };
 
 export const logoutUser = () => dispatch => {
-  console.log('logging out');
   localStorage.removeItem('jwtToken');
   delete axios.defaults.headers.common['Authorization'];
   dispatch(setCurrentUser({}));
@@ -38,7 +37,6 @@ export const registerUser = (userData, history) => dispatch => {
   axios
     .post('/user/register', userData)
     .then(res => {
-      console.log(res.data);
       alert(
         `Hi ${
           res.data.name
