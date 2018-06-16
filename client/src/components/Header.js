@@ -16,6 +16,11 @@ class Header extends Component {
     const authLinks = (
       <ul className="right">
         <li>
+          {this.props.auth.user ? (
+            <span>Hello, {this.props.auth.user.name}!</span>
+          ) : null}
+        </li>
+        <li>
           <a href="" onClick={this.logoutHandler}>
             Logout
           </a>
@@ -31,8 +36,8 @@ class Header extends Component {
           </Link>
         </li>
         <li>
-          <Link to="/signup" className="right">
-            Sign Up
+          <Link to="/register" className="right">
+            Register
           </Link>
         </li>
       </ul>
@@ -57,12 +62,6 @@ const mapStateToProps = state => {
     auth: state.auth
   };
 };
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onLogout: () => dispatch(actions.logoutUser)
-//   };
-// };
 
 export default connect(
   mapStateToProps,

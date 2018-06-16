@@ -4,6 +4,7 @@ import Header from './Header';
 import Dashboard from './Dashboard';
 import Landing from './Landing';
 import Login from './Login';
+import Register from './Register';
 
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
@@ -16,8 +17,6 @@ if (localStorage.jwtToken) {
   store.dispatch(actions.setCurrentUser(decoded));
 }
 
-const SignUp = () => <h3>Sign up Page</h3>;
-
 class App extends Component {
   render() {
     return (
@@ -26,7 +25,7 @@ class App extends Component {
           <div>
             <Header />
             <div className="container">
-              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/" component={Landing} />

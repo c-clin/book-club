@@ -1,3 +1,8 @@
 export { onFetchBook } from './googleBooks';
 
-export { loginUser, setCurrentUser, logoutUser } from './authUser';
+export {
+  loginUser,
+  setCurrentUser,
+  logoutUser,
+  registerUser
+} from './authUser';

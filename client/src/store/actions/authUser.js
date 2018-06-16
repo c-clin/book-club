@@ -34,3 +34,19 @@ export const logoutUser = () => dispatch => {
   delete axios.defaults.headers.common['Authorization'];
   dispatch(setCurrentUser({}));
 };
+
+export const registerUser = (userData, history) => dispatch => {
+  axios
+    .post('/api/user/register', userData)
+    .then(res => {
+      console.log(res.data);
+      alert(
+        `Hi ${
+          res.data.name
+        }, you have successfully signed up! Please log in to continue.`
+      );
+      history.push('/login');
+    })
+    // TODO: change how the error is dispayed
+    .catch(err => alert(err.response.data.email));
+};

@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import * as actions from '../store/actions';
 
-class Login extends Component {
+class Register extends Component {
   state = {
+    name: '',
     email: '',
     password: ''
   };
-
   inputChangeHandler = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  loginUser = () => {
+  registerUser = () => {
     const userData = {
+      name: this.state.name,
       email: this.state.email,
       password: this.state.password
     };
-    this.props.onLogin(userData, this.props.history);
-    this.setState({ email: '', password: '' });
+
+    this.props.onRegister(userData, this.props.history);
   };
 
   render() {
@@ -27,6 +28,15 @@ class Login extends Component {
       <div>
         <form className="col s6" style={{ marginTop: '30px' }}>
           <div className="row">
+            <div className="input-field col s8 offset-s2">
+              <input
+                type="text"
+                name="name"
+                className="validate"
+                onChange={this.inputChangeHandler}
+              />
+              <label className="active">Name</label>
+            </div>
             <div className="input-field col s8 offset-s2">
               <input
                 type="email"
@@ -48,11 +58,11 @@ class Login extends Component {
           </div>
           <div className="right-align" style={{ marginRight: '10%' }}>
             <button
-              onClick={this.loginUser}
+              onClick={this.registerUser}
               className="btn waves-effect waves-light"
               type="button"
             >
-              Login
+              Sign up
               <i className="material-icons right">send</i>
             </button>
           </div>
@@ -64,12 +74,12 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: (userData, history) =>
-      dispatch(actions.loginUser(userData, history))
+    onRegister: (userData, history) =>
+      dispatch(actions.registerUser(userData, history))
   };
 };
 
 export default connect(
   null,
   mapDispatchToProps
-)(withRouter(Login));
+)(withRouter(Register));
