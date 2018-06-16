@@ -8,7 +8,6 @@ export const fetchBook = data => {
   };
 };
 
-// `?q=${query}&key=AIzaSyCz-ivXjqdYUNr9T3Vpgg8oQkf7ZV7WoQM`;
 export const onFetchBook = query => {
   return dispatch => {
     axios({
@@ -17,7 +16,6 @@ export const onFetchBook = query => {
       headers: {}
     })
       .then(res => {
-        // console.log(res.data.items);
         let counter = 0;
         const bookList = [];
         while (counter < res.data.items.length) {

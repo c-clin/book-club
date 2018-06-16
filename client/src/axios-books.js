@@ -4,4 +4,6 @@ const bookInstance = axios.create({
   headers: {}
 });
 
+bookInstance.defaults.headers.common = '';
+
 export default bookInstance;
