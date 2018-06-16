@@ -34,9 +34,10 @@ router.post(
             author,
             imgURL,
             apiID,
-            _user: req.user.id,
-            date: Date.now()
+            _user: req.user.id
+            // status: 'unavailable'
           });
+          console.log(book);
 
           try {
             book.save();

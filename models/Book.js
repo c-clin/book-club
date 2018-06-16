@@ -10,7 +10,11 @@ const BookSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
-  date: Date
+  status: {
+    type: String,
+    enum: ['available', 'not-available', 'pending'],
+    default: 'not-available'
+  }
 });
 
 module.exports = Book = mongoose.model('book', BookSchema);

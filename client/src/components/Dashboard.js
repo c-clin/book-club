@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions';
-import BookResultItem from './books/BookResultItem';
+import BookStatusItem from './books/BookStatusItem';
 
 export class Dashboard extends Component {
   componentDidMount = () => {
@@ -11,13 +11,14 @@ export class Dashboard extends Component {
   render() {
     const renderContent = this.props.books.bookList.map(book => {
       return (
-        <BookResultItem
+        <BookStatusItem
           key={book.title}
           title={book.title}
           author={book.author}
           // link={book.link}
           date={book.date}
           image={book.imgURL}
+          status={book.status}
         />
       );
     });

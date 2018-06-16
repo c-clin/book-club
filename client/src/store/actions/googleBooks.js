@@ -51,7 +51,6 @@ export const onFetchBook = query => {
           });
           counter++;
         }
-        console.log(bookList);
         dispatch(fetchBook(bookList));
       })
       .catch(err => {
