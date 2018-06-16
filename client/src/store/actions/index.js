@@ -1,4 +1,10 @@
-export { onFetchBook, onAddBook, onLoadList, onTradeBook } from './googleBooks';
+export {
+  onFetchBook,
+  onAddBook,
+  onLoadList,
+  onTradeBook,
+  onLoadBooksForTrade
+} from './googleBooks';
 
 export {
   loginUser,

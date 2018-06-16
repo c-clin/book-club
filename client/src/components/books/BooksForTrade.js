@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import BookTradeItem from './BookTradeItem';
@@ -9,11 +10,7 @@ export class BooksForTrade extends Component {
   };
 
   render() {
-    const availableBooks = this.props.books.bookList.filter(book => {
-      return book.status === 'available';
-    });
-
-    const renderContent = availableBooks.map(book => {
+    const renderContent = this.props.books.availableBooks.map(book => {
       return (
         <BookTradeItem
           key={book.title}
@@ -25,19 +22,32 @@ export class BooksForTrade extends Component {
         />
       );
     });
-    return <div>{renderContent}</div>;
+
+    const errorMessage = (
+      <p>
+        You must <Link to="/login">log in</Link> to trade!
+      </p>
+    );
+
+    return (
+      <div>
+        {this.props.auth.isAuthenticated ? null : errorMessage}
+        {renderContent}
+      </div>
+    );
   }
 }
 
 const mapStateToProps = (state, action) => {
   return {
+    auth: state.auth,
     books: state.books
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLoadList: () => dispatch(actions.onLoadList())
+    onLoadList: () => dispatch(actions.onLoadBooksForTrade())
   };
 };
 

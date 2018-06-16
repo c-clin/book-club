@@ -6,6 +6,7 @@ const passport = require('passport');
 const keys = require('./config/keys');
 const users = require('./routes/authRoutes');
 const books = require('./routes/bookRoutes');
+const trade = require('./routes/tradeRoutes');
 
 const app = express();
 
@@ -25,6 +26,7 @@ require('./services/passport')(passport);
 // ----------- routes --------------
 app.use('/api/user', users);
 app.use('/api/books', books);
+app.use('/api/trade', trade);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));

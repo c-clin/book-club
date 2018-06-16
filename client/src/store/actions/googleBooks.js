@@ -12,6 +12,7 @@ export const fetchBook = data => {
   };
 };
 
+// load user's book list
 export const onLoadList = () => dispatch => {
   axiosApi
     .get('/books/my-list', {
@@ -26,6 +27,19 @@ export const onLoadList = () => dispatch => {
     .catch(err => console.log(err));
 };
 
+export const onLoadBooksForTrade = () => dispatch => {
+  axiosApi
+    .get('/trade/available-books')
+    .then(res =>
+      dispatch({
+        type: actionTypes.LOAD_AVAILABLE_BOOKS,
+        availableBooks: res.data
+      })
+    )
+    .catch(err => err);
+};
+
+// fetch a searched query
 export const onFetchBook = query => {
   return dispatch => {
     axiosBooks({
@@ -59,6 +73,7 @@ export const onFetchBook = query => {
   };
 };
 
+// add a book to user's list
 export const onAddBook = bookData => dispatch => {
   const finalData = {
     title: bookData.title,
@@ -75,6 +90,7 @@ export const onAddBook = bookData => dispatch => {
     .catch(err => console.log(err));
 };
 
+// toggle whether to put a book on user's list up for trade
 export const onTradeBook = data => dispatch => {
   // console.log(data);
   const tradeData = {

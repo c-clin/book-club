@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
   searchList: [],
-  bookList: []
+  bookList: [],
+  availableBooks: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,6 +17,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         bookList: action.bookList
+      };
+    case actionTypes.LOAD_AVAILABLE_BOOKS:
+      return {
+        ...state,
+        availableBooks: action.availableBooks
       };
     default:
       return state;
