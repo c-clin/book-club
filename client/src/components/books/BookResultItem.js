@@ -9,10 +9,12 @@ const BookResultItem = props => {
 
   return (
     <div style={{ width: '400px' }}>
-      <h4>{props.title}</h4>
+      <h5>{props.title}</h5>
       <p>{props.author}</p>
-      <p>{props.link}</p>
-      <img src={props.image} alt={props.title} />
+      <p>
+        <a href={props.link}>Website</a>
+      </p>
+      <img src={props.image} alt={props.title} width="128" />
       {addBookBtn}
     </div>
   );

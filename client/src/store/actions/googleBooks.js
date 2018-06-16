@@ -2,6 +2,9 @@ import * as actionTypes from './actionTypes';
 import axiosBooks from '../../axios-books';
 import axiosApi from '../../axios-api';
 
+const no_image_url =
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png';
+
 export const fetchBook = data => {
   return {
     type: actionTypes.SEARCH_BOOK,
@@ -21,12 +24,15 @@ export const onFetchBook = query => {
         const bookList = [];
 
         while (counter < res.data.items.length) {
+          let img_url = res.data.items[counter].volumeInfo.imageLinks
+            ? res.data.items[counter].volumeInfo.imageLinks.thumbnail
+            : no_image_url;
+
           bookList.push({
             title: res.data.items[counter].volumeInfo.title,
             author: res.data.items[counter].volumeInfo.authors,
             link: res.data.items[counter].volumeInfo.infoLink,
-            image:
-              res.data.items[counter].volumeInfo.imageLinks.thumbnail || '',
+            image: img_url,
             apiID: res.data.items[counter].id
           });
           counter++;
@@ -41,7 +47,6 @@ export const onFetchBook = query => {
 };
 
 export const onAddBook = bookData => dispatch => {
-  // console.log(bookData);
   const finalData = {
     title: bookData.title,
     author: bookData.author,
