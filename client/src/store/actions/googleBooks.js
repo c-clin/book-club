@@ -74,3 +74,21 @@ export const onAddBook = bookData => dispatch => {
     .then(res => console.log(res))
     .catch(err => console.log(err));
 };
+
+export const onTradeBook = data => dispatch => {
+  // console.log(data);
+  const tradeData = {
+    _user: data.auth.user.id,
+    apiID: data.apiID,
+    status: data.status
+  };
+
+  axiosApi
+    .post('/books/update-trade', tradeData, {
+      headers: { Authorization: localStorage.jwtToken }
+    })
+    .then(res => {
+      dispatch(onLoadList());
+    })
+    .catch(err => console.log(err));
+};

@@ -9,14 +9,14 @@ export class Dashboard extends Component {
   };
 
   render() {
-    const renderContent = this.props.books.bookList.map(book => {
+    const renderContent = this.props.books.bookList.reverse().map(book => {
       return (
         <BookStatusItem
           key={book.title}
           title={book.title}
           author={book.author}
           // link={book.link}
-          date={book.date}
+          apiID={book.apiID}
           image={book.imgURL}
           status={book.status}
         />

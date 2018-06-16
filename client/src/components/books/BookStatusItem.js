@@ -1,26 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 
-const BookStatusItem = props => {
-  let actionBtn =
-    props.status === 'not-available' ? (
-      <button>Trade this book!</button>
-    ) : (
-      <button>Keep this book!</button>
+export class BookStatusItem extends Component {
+  render() {
+    let actionBtn =
+      this.props.status === 'not-available' ? (
+        <button onClick={() => this.props.onTradeStatus(this.props)}>
+          Trade this book!
+        </button>
+      ) : (
+        <button onClick={() => this.props.onTradeStatus(this.props)}>
+          Keep this book!
+        </button>
+      );
+    return (
+      <div style={{ width: '400px' }}>
+        <h5>{this.props.title}</h5>
+        <p>{this.props.author}</p>
+        <p>
+          <a href={this.props.link}>Website</a>
+        </p>
+        <img src={this.props.image} alt={this.props.title} width="128" />
+        {actionBtn}
+      </div>
     );
-  return (
-    <div style={{ width: '400px' }}>
-      <h5>{props.title}</h5>
-      <p>{props.author}</p>
-      <p>
-        <a href={props.link}>Website</a>
-      </p>
-      <img src={props.image} alt={props.title} width="128" />
-      {actionBtn}
-    </div>
-  );
-};
+  }
+}
 
 const mapStateToProps = state => {
   return {
@@ -30,7 +36,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    onTradeStatus: data => dispatch(actions.onTradeBook(data))
+  };
 };
 
 export default connect(
