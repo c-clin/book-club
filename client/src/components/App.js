@@ -5,6 +5,7 @@ import Dashboard from './Dashboard';
 import Landing from './Landing';
 import Login from './Login';
 import Register from './Register';
+import BookResult from './books/BookResult';
 
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
@@ -28,7 +29,11 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/search" component={BookResult} />
               <Route exact path="/" component={Landing} />
+              {/* list of all books for trade  */}
+              {/* user's own list of books for trade */}
+              {/* page showing the search book results */}
             </div>
           </div>
         </BrowserRouter>

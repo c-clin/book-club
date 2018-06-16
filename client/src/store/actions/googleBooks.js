@@ -19,7 +19,9 @@ export const onFetchBook = query => {
         while (counter < res.data.items.length) {
           bookList.push({
             title: res.data.items[counter].volumeInfo.title,
-            author: res.data.items[counter].volumeInfo.authors
+            author: res.data.items[counter].volumeInfo.authors,
+            link: res.data.items[counter].selfLink,
+            image: res.data.items[counter].volumeInfo.imageLinks.thumbnail
           });
           counter++;
         }
