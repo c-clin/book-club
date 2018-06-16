@@ -12,7 +12,6 @@ export class BooksForTrade extends Component {
     const availableBooks = this.props.books.bookList.filter(book => {
       return book.status === 'available';
     });
-    console.log(availableBooks);
 
     const renderContent = availableBooks.map(book => {
       return (

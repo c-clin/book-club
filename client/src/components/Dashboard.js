@@ -23,12 +23,20 @@ export class Dashboard extends Component {
       );
     });
 
-    return <div>{renderContent}</div>;
+    return (
+      <div>
+        {this.props.auth.user ? (
+          <span>Hello, {this.props.auth.user.name}!</span>
+        ) : null}
+        {renderContent}
+      </div>
+    );
   }
 }
 
 const mapStateToProps = (state, action) => {
   return {
+    auth: state.auth,
     books: state.books
   };
 };

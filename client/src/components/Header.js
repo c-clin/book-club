@@ -30,20 +30,11 @@ class Header extends Component {
     const authLinks = (
       <ul className="right">
         <li>
-          {this.props.auth.user ? (
-            <span>Hello, {this.props.auth.user.name}!</span>
-          ) : null}
-        </li>
-        <li>
           <Link to="/dashboard" className="right">
             My Books
           </Link>
         </li>
-        <li>
-          <Link to="all-books" className="right">
-            All Books
-          </Link>
-        </li>
+
         <li>
           <a href="" onClick={this.logoutHandler}>
             Logout
@@ -89,6 +80,11 @@ class Header extends Component {
               >
                 search
               </i>
+            </li>
+            <li>
+              <Link to="all-books" className="right">
+                All Books
+              </Link>
             </li>
           </ul>
         </div>
