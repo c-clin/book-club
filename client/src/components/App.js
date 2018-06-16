@@ -6,6 +6,7 @@ import Landing from './Landing';
 import Login from './Login';
 import Register from './Register';
 import BookResult from './books/BookResult';
+import BooksForTrade from './books/BooksForTrade';
 
 import axios from '../axios-api';
 import jwt_decode from 'jwt-decode';
@@ -16,6 +17,14 @@ if (localStorage.jwtToken) {
   axios.defaults.headers.common['Authorization'] = localStorage.jwtToken;
   const decoded = jwt_decode(localStorage.jwtToken);
   store.dispatch(actions.setCurrentUser(decoded));
+
+  // check for expired token
+  const currentTime = Date().now / 1000;
+  if (decoded.exp < currentTime) {
+    // logout user
+    store.dispatch(actions.logoutUser());
+    window.location.href = '/login';
+  }
 }
 
 class App extends Component {
@@ -29,10 +38,10 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/all-books" component={BooksForTrade} />
               <Route exact path="/search" component={BookResult} />
               <Route exact path="/" component={Landing} />
               {/* list of all books for trade  */}
-              {/* user's own list of books for trade */}
             </div>
           </div>
         </BrowserRouter>

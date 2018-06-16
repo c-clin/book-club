@@ -40,9 +40,9 @@ class Header extends Component {
           </Link>
         </li>
         <li>
-          <a href="" className="right">
+          <Link to="all-books" className="right">
             All Books
-          </a>
+          </Link>
         </li>
         <li>
           <a href="" onClick={this.logoutHandler}>
