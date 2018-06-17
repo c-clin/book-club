@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Book = require('../models/Book');
-const Trade = require('../models/trade');
+const Trade = require('../models/Trade');
 
 // @route   Get api/trade/available-books
 // @desc    Load all books for trade
@@ -28,6 +28,7 @@ router.post(
     // if (to === from) {
     //   res.status(400).send({ err: 'You cannot trade with yourself.' });
     // }
+    // test
 
     Book.findOneAndUpdate(
       {
