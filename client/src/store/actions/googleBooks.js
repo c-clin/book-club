@@ -150,3 +150,19 @@ export const onTradeBook = data => dispatch => {
 };
 
 // accept or reject trade requests
+export const onAcceptRequest = data => dispatch => {
+  const reqData = {
+    _id: data._id,
+    from: data.from,
+    to: data.to,
+    bookID: data.book
+  };
+
+  // console.log(reqData);
+  axiosApi
+    .post('/trade/accept', reqData, {
+      headers: { Authorization: localStorage.jwtToken }
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+};

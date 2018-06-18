@@ -74,6 +74,54 @@ router.post(
   }
 );
 
+// @route   Post api/trade/accept
+// @desc    On accepting trade request
+// access   Private
+
+router.post(
+  '/accept',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { _id, from, to, bookID } = req.body;
+    var ownerName;
+
+    Book.findOne({ _user: from }).then(book => {
+      if (book) {
+        ownerName = book.ownerName;
+      }
+    });
+
+    // find Trade with the id and delete it from list
+    Trade.deleteOne({ _id }, (err, doc) => {
+      if (err) {
+        console.log(err);
+      }
+      res.send('trade accepted');
+    });
+
+    // find Book with the id and swap the owner
+    Book.findOneAndUpdate(
+      {
+        _id: bookID
+      },
+      {
+        ownerName: ownerName,
+        _user: from,
+        status: 'not-available'
+      },
+      {
+        returnNewDocument: true
+      },
+      function(err, doc) {
+        if (err) {
+          console.log(err);
+        }
+        console.log(doc);
+      }
+    );
+  }
+);
+
 // @route   Post api/trade/requests
 // @desc    Load the user's pending trade requests
 // access   Private

@@ -32,7 +32,9 @@ export class Dashboard extends Component {
                 <td>{counter}</td>
                 <td>{req.title}</td>
                 <td>
-                  <button>Accept</button>
+                  <button onClick={() => this.props.onAcceptRequest(req)}>
+                    Accept
+                  </button>
                   <button>Reject</button>
                 </td>
               </tr>
@@ -83,7 +85,8 @@ const mapStateToProps = (state, action) => {
 const mapDispatchToProps = dispatch => {
   return {
     onLoadList: () => dispatch(actions.onLoadList()),
-    onLoadRequests: user => dispatch(actions.onLoadTradeRequests(user))
+    onLoadRequests: user => dispatch(actions.onLoadTradeRequests(user)),
+    onAcceptRequest: reqData => dispatch(actions.onAcceptRequest(reqData))
   };
 };
 
