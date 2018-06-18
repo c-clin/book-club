@@ -22,7 +22,7 @@ router.post(
   '/add-book',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { title, author, imgURL, apiID, ownerName } = req.body;
+    const { title, author, imgURL, apiID, ownerName, link } = req.body;
     Book.findOne({ apiID })
       .then(book => {
         if (book) {
@@ -34,6 +34,7 @@ router.post(
             imgURL,
             apiID,
             ownerName,
+            link,
             _user: req.user.id
           });
           try {

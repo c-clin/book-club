@@ -84,8 +84,6 @@ router.post(
   (req, res) => {
     const { _id, from, to, bookID, decision } = req.body;
     let ownerName = '';
-
-    // TODO: keep losing the ownerName
     // find the user name of the person sending request for swap later
     User.findOne({ _id: from }).then(user => {
       if (user) {

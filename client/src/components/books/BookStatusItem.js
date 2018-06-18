@@ -30,7 +30,9 @@ export class BookStatusItem extends Component {
         <h5>{this.props.title}</h5>
         <p>{this.props.author}</p>
         <p>
-          <a href={this.props.link}>Website</a>
+          <a href={this.props.link} target="_blank">
+            Website
+          </a>
         </p>
         <img src={this.props.image} alt={this.props.title} width="128" />
         {this.actionBtn()}

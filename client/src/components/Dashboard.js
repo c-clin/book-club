@@ -17,7 +17,7 @@ export class Dashboard extends Component {
           key={book.title}
           title={book.title}
           author={book.author}
-          // link={book.link}
+          link={book.link}
           apiID={book.apiID}
           image={book.imgURL}
           status={book.status}
