@@ -109,8 +109,8 @@ export const onAddBook = bookData => dispatch => {
 // load user's trade/pending requests
 export const onLoadTradeRequests = (id, reqType) => dispatch => {
   const reqData = {
-    id,
-    reqType
+    id, // _user id
+    reqType // trade or pending
   };
   console.log(reqData);
   axiosApi
@@ -128,6 +128,7 @@ export const onLoadTradeRequests = (id, reqType) => dispatch => {
 };
 
 // making a trade request
+// toggle the trade button to on hold
 export const onTradeRequest = data => dispatch => {
   const tradeData = {
     from: data.auth.user.id,
@@ -139,7 +140,7 @@ export const onTradeRequest = data => dispatch => {
     .post('/trade/trade-request', tradeData, {
       headers: { Authorization: localStorage.jwtToken }
     })
-    .then(res => console.log(res))
+    .then(res => dispatch(onLoadBooksForTrade()))
     .catch(err => console.log(err));
 };
 
@@ -178,7 +179,7 @@ export const respondToRequests = (data, decision) => dispatch => {
       headers: { Authorization: localStorage.jwtToken }
     })
     .then(res => {
-      dispatch(onLoadTradeRequests(res.data));
+      dispatch(onLoadTradeRequests(res.data, 'trade'));
     })
     .catch(err => console.log(err));
 };

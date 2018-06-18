@@ -211,8 +211,6 @@ router.post(
   (req, res) => {
     const { _user, apiID, status } = req.body;
     let newStatus = status === 'not-available' ? 'available' : 'not-available';
-
-    console.log(_user, apiID, newStatus);
     Book.findOneAndUpdate(
       { _user, apiID },
       {
@@ -225,7 +223,7 @@ router.post(
         if (err) {
           console.log(err);
         }
-        console.log(doc);
+        res.send('trade success');
       }
     );
   }

@@ -11,7 +11,7 @@ export class Dashboard extends Component {
   };
 
   render() {
-    const renderContent = this.props.books.bookList.reverse().map(book => {
+    const renderContent = this.props.books.bookList.map(book => {
       return (
         <BookStatusItem
           key={book.title}
