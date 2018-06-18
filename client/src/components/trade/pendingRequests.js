@@ -29,9 +29,7 @@ export class PendingRequests extends Component {
                 <td>{req.title}</td>
                 <td>{new Date(req.date).toLocaleDateString()}</td>
                 <td>
-                  <button
-                    onClick={() => this.props.onRespondingToReq(req, 'accept')}
-                  >
+                  <button onClick={() => this.props.cancelPendingReq(req)}>
                     Cancel
                   </button>
                 </td>
@@ -65,8 +63,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onLoadRequests: (user, pending) =>
       dispatch(actions.onLoadTradeRequests(user, pending)),
-    onRespondingToReq: (reqData, decision) =>
-      dispatch(actions.respondToRequests(reqData, decision))
+    cancelPendingReq: reqData =>
+      dispatch(actions.cancelPendingRequests(reqData))
   };
 };
 

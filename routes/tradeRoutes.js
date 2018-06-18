@@ -141,6 +141,42 @@ router.post(
   }
 );
 
+// @route   Post api/trade/pending-response
+// @desc    On canceling a pending response
+// access   Private
+router.post(
+  '/pending-response',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { _id, bookID, from } = req.body;
+
+    // find and delete the trade request
+    Trade.deleteOne({ _id }, (err, doc) => {
+      if (err) console.log(err);
+      // find Book with the id and swap the owner
+      Book.findOneAndUpdate(
+        {
+          _id: bookID
+        },
+        {
+          status: 'available'
+        },
+        {
+          returnNewDocument: true
+        },
+        function(err, doc) {
+          if (err) {
+            console.log(err);
+          }
+          res.send(from);
+        }
+      );
+    });
+  }
+
+  // find the Book and change status to available
+);
+
 // @route   Post api/trade/requests
 // @desc    Load the user's pending trade requests
 // access   Private

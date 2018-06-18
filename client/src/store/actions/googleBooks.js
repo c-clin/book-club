@@ -106,7 +106,7 @@ export const onAddBook = bookData => dispatch => {
     .catch(err => console.log(err));
 };
 
-// load user's trade requests
+// load user's trade/pending requests
 export const onLoadTradeRequests = (id, reqType) => dispatch => {
   const reqData = {
     id,
@@ -181,6 +181,25 @@ export const respondToRequests = (data, decision) => dispatch => {
       dispatch(onLoadTradeRequests(res.data));
     })
     .catch(err => console.log(err));
+};
+
+// canceling pending requests
+export const cancelPendingRequests = data => dispatch => {
+  console.log(data);
+  const reqData = {
+    _id: data._id,
+    bookID: data.book,
+    from: data.from
+  };
+  console.log(reqData);
+  // need to return _user to dispatch onLoadTradeRequests(_user, pending)
+
+  axiosApi
+    .post('/trade/pending-response', reqData, {
+      headers: { Authorization: localStorage.jwtToken }
+    })
+    .then(res => dispatch(onLoadTradeRequests(res.data, 'pending')))
+    .catch(e => console.log(e));
 };
 
 // TODO: Add a working website from the google books api
