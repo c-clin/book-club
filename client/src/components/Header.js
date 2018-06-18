@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions';
+import './css/Header.css';
 
 class Header extends Component {
   state = {
-    query: ''
+    query: '',
+    openDropdown: false
   };
 
   inputChangeHandler = event => {
@@ -24,8 +26,36 @@ class Header extends Component {
     this.props.onLogout();
   };
 
+  toggleDropdown = () => {
+    let currentDropdown = this.state.openDropdown;
+    this.setState({ openDropdown: !currentDropdown });
+    console.log('dropdown status ' + this.state.openDropdown);
+  };
+
   render() {
     console.log(this.props.auth.isAuthenticated);
+
+    const authDropdown = (
+      <ul
+        id="dropdown1"
+        className="dropdown-content"
+        style={{ display: this.state.openDropdown ? 'block' : 'none' }}
+      >
+        <li>
+          <a href="">Trade Requests</a>
+        </li>
+        <li>
+          <a href="" onClick={this.logoutHandler}>
+            Pending Requests
+          </a>
+        </li>
+        <li>
+          <a href="" onClick={this.logoutHandler}>
+            Logout
+          </a>
+        </li>
+      </ul>
+    );
 
     const authLinks = (
       <ul className="right">
@@ -34,10 +64,14 @@ class Header extends Component {
             My Books
           </Link>
         </li>
-
         <li>
-          <a href="" onClick={this.logoutHandler}>
-            Logout
+          <a
+            className="dropdown-trigger"
+            href="#!"
+            data-target="dropdown1"
+            onClick={this.toggleDropdown}
+          >
+            Manage<i className="material-icons right">arrow_drop_down</i>
           </a>
         </li>
       </ul>
@@ -59,36 +93,39 @@ class Header extends Component {
     );
 
     return (
-      <nav>
-        <div className="nav-wrapper">
-          <Link to="/" className="left brand-logo">
-            Book Club
-          </Link>
-          {this.props.auth.isAuthenticated ? authLinks : guestLinks}
-          <ul className="right">
-            <li>
-              <input
-                type="text"
-                onChange={this.inputChangeHandler}
-                style={{ width: '150px' }}
-                value={this.state.query}
-              />
-              <i
-                className="material-icons right"
-                onClick={this.searchBookHandler}
-                style={{ marginLeft: '0', cursor: 'pointer' }}
-              >
-                search
-              </i>
-            </li>
-            <li>
-              <Link to="all-books" className="right">
-                All Books
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <div className="Header">
+        {this.props.auth.isAuthenticated ? authDropdown : null}
+        <nav>
+          <div className="nav-wrapper">
+            <Link to="/" className="left brand-logo">
+              Book Club
+            </Link>
+            {this.props.auth.isAuthenticated ? authLinks : guestLinks}
+            <ul className="right">
+              <li>
+                <input
+                  type="text"
+                  onChange={this.inputChangeHandler}
+                  style={{ width: '150px' }}
+                  value={this.state.query}
+                />
+                <i
+                  className="material-icons right"
+                  onClick={this.searchBookHandler}
+                  style={{ marginLeft: '0', cursor: 'pointer' }}
+                >
+                  search
+                </i>
+              </li>
+              <li>
+                <Link to="all-books" className="right">
+                  All Books
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
     );
   }
 }

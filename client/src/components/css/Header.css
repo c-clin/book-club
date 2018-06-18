@@ -1,0 +1,9 @@
+.Header .dropdown-content {
+  /* display: block; */
+  width: 140px;
+  right: 0;
+  top: 50px;
+  transform-origin: 0px 0px 0px;
+  opacity: 1;
+  transform: scaleX(1) scaleY(1);
+}
