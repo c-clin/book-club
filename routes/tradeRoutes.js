@@ -82,11 +82,13 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { _id, from, to, bookID, decision } = req.body;
-    var ownerName;
+    let ownerName = '';
 
+    // TODO: keep losing the ownerName
     Book.findOne({ _user: from }).then(book => {
       if (book) {
         ownerName = book.ownerName;
+        console.log(ownerName);
       }
     });
 
@@ -113,7 +115,7 @@ router.post(
             if (err) {
               console.log(err);
             }
-            res.send('trade accepted');
+            res.send(to);
           }
         );
       } else {
@@ -131,7 +133,7 @@ router.post(
             if (err) {
               console.log(err);
             }
-            res.send('trade denied');
+            res.send(to);
           }
         );
       }
@@ -146,14 +148,21 @@ router.post(
   '/requests',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { id } = req.body;
-    console.log(id);
-    Trade.find({ to: id })
-      .then(trade => {
-        res.send(trade);
-        // res.send('trade req success');
-      })
-      .catch(err => console.log(err));
+    const { id, reqType } = req.body;
+    if (reqType === 'trade') {
+      Trade.find({ to: id })
+        .then(trade => {
+          res.send(trade);
+          // res.send('trade req success');
+        })
+        .catch(err => console.log(err));
+    } else {
+      Trade.find({ from: id })
+        .then(pendingReq => {
+          res.send(pendingReq);
+        })
+        .catch(e => console.log(e));
+    }
   }
 );
 

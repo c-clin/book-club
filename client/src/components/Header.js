@@ -22,14 +22,13 @@ class Header extends Component {
 
   logoutHandler = e => {
     e.preventDefault();
-    console.log('logout clicked');
+    this.props.history.push('/all-books');
     this.props.onLogout();
   };
 
   toggleDropdown = () => {
     let currentDropdown = this.state.openDropdown;
     this.setState({ openDropdown: !currentDropdown });
-    console.log('dropdown status ' + this.state.openDropdown);
   };
 
   render() {
@@ -42,12 +41,10 @@ class Header extends Component {
         style={{ display: this.state.openDropdown ? 'block' : 'none' }}
       >
         <li>
-          <a href="">Trade Requests</a>
+          <Link to="/trade-request">Trade Requests</Link>
         </li>
         <li>
-          <a href="" onClick={this.logoutHandler}>
-            Pending Requests
-          </a>
+          <Link to="/pending-request">Pending Requests</Link>
         </li>
         <li>
           <a href="" onClick={this.logoutHandler}>

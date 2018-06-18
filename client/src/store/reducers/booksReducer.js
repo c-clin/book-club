@@ -4,7 +4,8 @@ const initialState = {
   searchList: [],
   bookList: [],
   availableBooks: [],
-  tradeRequests: []
+  tradeRequests: [],
+  pendingRequests: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -28,6 +29,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         tradeRequests: action.tradeRequests
+      };
+    case actionTypes.LOAD_PENDING_REQUESTS:
+      return {
+        ...state,
+        pendingRequests: action.pendingRequests
       };
     default:
       return state;

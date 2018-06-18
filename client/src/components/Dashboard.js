@@ -8,47 +8,6 @@ import './books/BookItem.css';
 export class Dashboard extends Component {
   componentDidMount = () => {
     this.props.onLoadList();
-    this.props.onLoadRequests(this.props.auth.user.id);
-  };
-
-  tradeRequests = () => {
-    let counter = 0;
-    return (
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Book</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {/* map through the trade list */}
-          {this.props.books.tradeRequests.map(req => {
-            counter++;
-            return (
-              <tr>
-                <td>{counter}</td>
-                <td>{req.title}</td>
-                <td>
-                  <button
-                    onClick={() => this.props.onAcceptRequest(req, 'accept')}
-                  >
-                    Accept
-                  </button>
-                  <button
-                    onClick={() => this.props.onAcceptRequest(req, 'deny')}
-                  >
-                    Deny
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    );
   };
 
   render() {
@@ -73,8 +32,6 @@ export class Dashboard extends Component {
           <span>Hello, {this.props.auth.user.name}!</span>
         ) : null}
 
-        {this.props.books.tradeRequests ? this.tradeRequests() : null}
-
         <div className="BookItem-container">{renderContent}</div>
       </div>
     );
@@ -90,10 +47,7 @@ const mapStateToProps = (state, action) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLoadList: () => dispatch(actions.onLoadList()),
-    onLoadRequests: user => dispatch(actions.onLoadTradeRequests(user)),
-    onAcceptRequest: (reqData, decision) =>
-      dispatch(actions.onAcceptRequest(reqData, decision))
+    onLoadList: () => dispatch(actions.onLoadList())
   };
 };
 

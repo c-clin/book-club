@@ -12,6 +12,20 @@ export const fetchBook = data => {
   };
 };
 
+export const loadTradeRequests = data => {
+  return {
+    type: actionTypes.LOAD_TRADE_REQUESTS,
+    tradeRequests: data
+  };
+};
+
+export const loadPendingRequests = data => {
+  return {
+    type: actionTypes.LOAD_PENDING_REQUESTS,
+    pendingRequests: data
+  };
+};
+
 // load user's book list
 export const onLoadList = () => dispatch => {
   axiosApi
@@ -93,20 +107,22 @@ export const onAddBook = bookData => dispatch => {
 };
 
 // load user's trade requests
-export const onLoadTradeRequests = id => dispatch => {
-  console.log(id);
+export const onLoadTradeRequests = (id, reqType) => dispatch => {
   const reqData = {
-    id: id
+    id,
+    reqType
   };
+  console.log(reqData);
   axiosApi
     .post('/trade/requests', reqData, {
       headers: { Authorization: localStorage.jwtToken }
     })
     .then(res => {
-      dispatch({
-        type: actionTypes.LOAD_TRADE_REQUESTS,
-        tradeRequests: res.data
-      });
+      if (reqType === 'trade') {
+        dispatch(loadTradeRequests(res.data));
+      } else {
+        dispatch(loadPendingRequests(res.data));
+      }
     })
     .catch(err => console.log(err));
 };
@@ -146,8 +162,8 @@ export const onTradeBook = data => dispatch => {
     .catch(err => console.log(err));
 };
 
-// accept trade requests
-export const onAcceptRequest = (data, decision) => dispatch => {
+// accepting/rejecting trade requests
+export const respondToRequests = (data, decision) => dispatch => {
   const reqData = {
     _id: data._id,
     from: data.from,
@@ -162,7 +178,9 @@ export const onAcceptRequest = (data, decision) => dispatch => {
       headers: { Authorization: localStorage.jwtToken }
     })
     .then(res => {
-      dispatch(onLoadList());
+      dispatch(onLoadTradeRequests(res.data));
     })
     .catch(err => console.log(err));
 };
+
+// TODO: Add a working website from the google books api

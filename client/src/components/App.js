@@ -7,6 +7,8 @@ import Login from './Login';
 import Register from './Register';
 import BookResult from './books/BookResult';
 import BooksForTrade from './books/BooksForTrade';
+import TradeRequests from './trade/tradeRequests';
+import PendingRequests from './trade/pendingRequests';
 
 import axios from '../axios-api';
 import jwt_decode from 'jwt-decode';
@@ -40,6 +42,12 @@ class App extends Component {
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/all-books" component={BooksForTrade} />
               <Route exact path="/search" component={BookResult} />
+              <Route exact path="/trade-request" component={TradeRequests} />
+              <Route
+                exact
+                path="/pending-request"
+                component={PendingRequests}
+              />
               <Route exact path="/" component={Landing} />
               {/* list of all books for trade  */}
             </div>
