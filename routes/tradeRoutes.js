@@ -4,6 +4,7 @@ const router = express.Router();
 const passport = require('passport');
 const Book = require('../models/Book');
 const Trade = require('../models/Trade');
+const User = require('../models/User');
 
 // @route   Get api/trade/available-books
 // @desc    Load all books for trade
@@ -85,57 +86,57 @@ router.post(
     let ownerName = '';
 
     // TODO: keep losing the ownerName
-    Book.findOne({ _user: from }).then(book => {
-      if (book) {
-        ownerName = book.ownerName;
-        console.log(ownerName);
-      }
-    });
+    // find the user name of the person sending request for swap later
+    User.findOne({ _id: from }).then(user => {
+      if (user) {
+        ownerName = user.name;
 
-    // find Trade with the id and delete it from list
-    Trade.deleteOne({ _id }, (err, doc) => {
-      if (err) console.log(err);
+        // find Trade with the id and delete it from list
+        Trade.deleteOne({ _id }, (err, doc) => {
+          if (err) console.log(err);
 
-      // trade books if decision is accept
-      if (decision === 'accept') {
-        // find Book with the id and swap the owner
-        Book.findOneAndUpdate(
-          {
-            _id: bookID
-          },
-          {
-            ownerName: ownerName,
-            _user: from,
-            status: 'not-available'
-          },
-          {
-            returnNewDocument: true
-          },
-          function(err, doc) {
-            if (err) {
-              console.log(err);
-            }
-            res.send(to);
+          // trade books if decision is accept
+          if (decision === 'accept') {
+            // find Book with the id and swap the owner
+            Book.findOneAndUpdate(
+              {
+                _id: bookID
+              },
+              {
+                ownerName: ownerName,
+                _user: from,
+                status: 'not-available'
+              },
+              {
+                returnNewDocument: true
+              },
+              function(err, doc) {
+                if (err) {
+                  console.log(err);
+                }
+                res.send(to);
+              }
+            );
+          } else {
+            Book.findOneAndUpdate(
+              {
+                _id: bookID
+              },
+              {
+                status: 'not-available'
+              },
+              {
+                returnNewDocument: true
+              },
+              function(err, doc) {
+                if (err) {
+                  console.log(err);
+                }
+                res.send(to);
+              }
+            );
           }
-        );
-      } else {
-        Book.findOneAndUpdate(
-          {
-            _id: bookID
-          },
-          {
-            status: 'not-available'
-          },
-          {
-            returnNewDocument: true
-          },
-          function(err, doc) {
-            if (err) {
-              console.log(err);
-            }
-            res.send(to);
-          }
-        );
+        });
       }
     });
   }
@@ -153,7 +154,7 @@ router.post(
     // find and delete the trade request
     Trade.deleteOne({ _id }, (err, doc) => {
       if (err) console.log(err);
-      // find Book with the id and swap the owner
+      // find Book and change status to available
       Book.findOneAndUpdate(
         {
           _id: bookID
@@ -173,8 +174,6 @@ router.post(
       );
     });
   }
-
-  // find the Book and change status to available
 );
 
 // @route   Post api/trade/requests

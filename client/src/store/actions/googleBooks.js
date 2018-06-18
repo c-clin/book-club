@@ -112,7 +112,6 @@ export const onLoadTradeRequests = (id, reqType) => dispatch => {
     id, // _user id
     reqType // trade or pending
   };
-  console.log(reqData);
   axiosApi
     .post('/trade/requests', reqData, {
       headers: { Authorization: localStorage.jwtToken }
