@@ -8,7 +8,7 @@ const BookResultItem = props => {
   ) : null;
 
   return (
-    <div style={{ width: '400px' }}>
+    <div style={{ width: '150px' }}>
       <h5>{props.title}</h5>
       <p>{props.author}</p>
       <p>

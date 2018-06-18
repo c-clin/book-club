@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import BookTradeItem from './BookTradeItem';
 
+import './BookItem.css';
+
 export class BooksForTrade extends Component {
   componentDidMount = () => {
     this.props.onLoadList();
@@ -20,6 +22,7 @@ export class BooksForTrade extends Component {
           image={book.imgURL}
           status={book.status}
           owner={book._user}
+          username={book.ownerName}
           bookID={book._id}
         />
       );
@@ -34,7 +37,7 @@ export class BooksForTrade extends Component {
     return (
       <div>
         {this.props.auth.isAuthenticated ? null : errorMessage}
-        {renderContent}
+        <div className="BookItem-container">{renderContent}</div>
       </div>
     );
   }

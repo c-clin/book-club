@@ -14,6 +14,7 @@ const TradeSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  title: String,
   status: {
     type: String,
     enum: ['pending', 'approved', 'rejected'],

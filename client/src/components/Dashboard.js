@@ -3,9 +3,44 @@ import { connect } from 'react-redux';
 import * as actions from '../store/actions';
 import BookStatusItem from './books/BookStatusItem';
 
+import './books/BookItem.css';
+
 export class Dashboard extends Component {
   componentDidMount = () => {
     this.props.onLoadList();
+    this.props.onLoadRequests(this.props.auth.user.id);
+  };
+
+  tradeRequests = () => {
+    let counter = 0;
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Book</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {/* map through the trade list */}
+          {this.props.books.tradeRequests.map(req => {
+            counter++;
+            return (
+              <tr>
+                <td>{counter}</td>
+                <td>{req.title}</td>
+                <td>
+                  <button>Accept</button>
+                  <button>Reject</button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    );
   };
 
   render() {
@@ -25,10 +60,14 @@ export class Dashboard extends Component {
 
     return (
       <div>
+        {/* TODO: add your pending and trade request on top */}
         {this.props.auth.user ? (
           <span>Hello, {this.props.auth.user.name}!</span>
         ) : null}
-        {renderContent}
+
+        {this.props.books.tradeRequests ? this.tradeRequests() : null}
+
+        <div className="BookItem-container">{renderContent}</div>
       </div>
     );
   }
@@ -43,7 +82,8 @@ const mapStateToProps = (state, action) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLoadList: () => dispatch(actions.onLoadList())
+    onLoadList: () => dispatch(actions.onLoadList()),
+    onLoadRequests: user => dispatch(actions.onLoadTradeRequests(user))
   };
 };
 

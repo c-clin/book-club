@@ -80,7 +80,8 @@ export const onAddBook = bookData => dispatch => {
     title: bookData.title,
     author: bookData.author,
     imgURL: bookData.image,
-    apiID: bookData.apiID
+    apiID: bookData.apiID,
+    ownerName: bookData.auth.user.name
   };
 
   axiosApi
@@ -88,6 +89,25 @@ export const onAddBook = bookData => dispatch => {
       headers: { Authorization: localStorage.jwtToken }
     })
     .then(res => console.log(res))
+    .catch(err => console.log(err));
+};
+
+// load user's trade requests
+export const onLoadTradeRequests = id => dispatch => {
+  console.log(id);
+  const reqData = {
+    id: id
+  };
+  axiosApi
+    .post('/trade/requests', reqData, {
+      headers: { Authorization: localStorage.jwtToken }
+    })
+    .then(res => {
+      dispatch({
+        type: actionTypes.LOAD_TRADE_REQUESTS,
+        tradeRequests: res.data
+      });
+    })
     .catch(err => console.log(err));
 };
 
@@ -99,7 +119,8 @@ export const onTradeRequest = data => dispatch => {
   const tradeData = {
     from: data.auth.user.id,
     to: data.owner,
-    bookID: data.bookID
+    bookID: data.bookID,
+    title: data.title
   };
   axiosApi
     .post('/trade/trade-request', tradeData, {
@@ -119,7 +140,7 @@ export const onTradeBook = data => dispatch => {
   };
 
   axiosApi
-    .post('/books/update-trade', tradeData, {
+    .post('/trade/update-trade', tradeData, {
       headers: { Authorization: localStorage.jwtToken }
     })
     .then(res => {
@@ -127,3 +148,5 @@ export const onTradeBook = data => dispatch => {
     })
     .catch(err => console.log(err));
 };
+
+// accept or reject trade requests

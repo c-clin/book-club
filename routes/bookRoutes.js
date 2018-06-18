@@ -22,7 +22,7 @@ router.post(
   '/add-book',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { title, author, imgURL, apiID } = req.body;
+    const { title, author, imgURL, apiID, ownerName } = req.body;
     Book.findOne({ apiID })
       .then(book => {
         if (book) {
@@ -33,6 +33,7 @@ router.post(
             author,
             imgURL,
             apiID,
+            ownerName,
             _user: req.user.id
           });
           try {
@@ -44,34 +45,6 @@ router.post(
         }
       })
       .catch(err => console.log(err));
-  }
-);
-
-// @route   Post api/books/update-trade
-// @desc    Lets user update the status of their book (to trade or not)
-// access   Private
-router.post(
-  '/update-trade',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    const { _user, apiID, status } = req.body;
-    let newStatus = status === 'not-available' ? 'available' : 'not-available';
-
-    Book.findOneAndUpdate(
-      { _user, apiID },
-      {
-        status: newStatus
-      },
-      {
-        returnNewDocument: true
-      },
-      function(err, doc) {
-        if (err) {
-          console.log(err);
-        }
-        console.log(doc);
-      }
-    );
   }
 );
 

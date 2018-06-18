@@ -4,7 +4,8 @@ export {
   onLoadList,
   onTradeBook,
   onLoadBooksForTrade,
-  onTradeRequest
+  onTradeRequest,
+  onLoadTradeRequests
 } from './googleBooks';
 
 export {

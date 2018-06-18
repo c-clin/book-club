@@ -23,7 +23,7 @@ router.post(
   '/trade-request',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { bookID, from, to } = req.body;
+    const { bookID, from, to, title } = req.body;
 
     // if (to === from) {
     //   res.status(400).send({ err: 'You cannot trade with yourself.' });
@@ -59,6 +59,7 @@ router.post(
         book: bookID,
         from,
         to,
+        title,
         date: Date.now()
       });
       console.log('new trade req: ' + tradeRequest);
@@ -70,5 +71,52 @@ router.post(
         res.status(422).send(err);
       }
     });
+  }
+);
+
+// @route   Post api/trade/requests
+// @desc    Load the user's pending trade requests
+// access   Private
+router.post(
+  '/requests',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { id } = req.body;
+    console.log(id);
+    Trade.find({ to: id })
+      .then(trade => {
+        res.send(trade);
+        // res.send('trade req success');
+      })
+      .catch(err => console.log(err));
+  }
+);
+
+// @route   Post api/trade/update-trade
+// @desc    Lets user update the status of their book (to trade or not)
+// access   Private
+router.post(
+  '/update-trade',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { _user, apiID, status } = req.body;
+    let newStatus = status === 'not-available' ? 'available' : 'not-available';
+
+    console.log(_user, apiID, newStatus);
+    Book.findOneAndUpdate(
+      { _user, apiID },
+      {
+        status: newStatus
+      },
+      {
+        returnNewDocument: true
+      },
+      function(err, doc) {
+        if (err) {
+          console.log(err);
+        }
+        console.log(doc);
+      }
+    );
   }
 );

@@ -3,26 +3,37 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 
 export class BookStatusItem extends Component {
+  actionBtn = () => {
+    switch (this.props.status) {
+      case 'available':
+        return (
+          <button onClick={() => this.props.onTradeStatus(this.props)}>
+            Keep this book!
+          </button>
+        );
+      case 'not-available':
+        return (
+          <button onClick={() => this.props.onTradeStatus(this.props)}>
+            Trade this book!
+          </button>
+        );
+      case 'pending':
+        return <p>There's a pending request for this book!</p>;
+      default:
+        return;
+    }
+  };
+
   render() {
-    let actionBtn =
-      this.props.status === 'not-available' ? (
-        <button onClick={() => this.props.onTradeStatus(this.props)}>
-          Trade this book!
-        </button>
-      ) : (
-        <button onClick={() => this.props.onTradeStatus(this.props)}>
-          Keep this book!
-        </button>
-      );
     return (
-      <div style={{ width: '400px' }}>
+      <div style={{ width: '150px' }}>
         <h5>{this.props.title}</h5>
         <p>{this.props.author}</p>
         <p>
           <a href={this.props.link}>Website</a>
         </p>
         <img src={this.props.image} alt={this.props.title} width="128" />
-        {actionBtn}
+        {this.actionBtn()}
       </div>
     );
   }

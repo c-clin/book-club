@@ -3,7 +3,8 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   searchList: [],
   bookList: [],
-  availableBooks: []
+  availableBooks: [],
+  tradeRequests: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -22,6 +23,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         availableBooks: action.availableBooks
+      };
+    case actionTypes.LOAD_TRADE_REQUESTS:
+      return {
+        ...state,
+        tradeRequests: action.tradeRequests
       };
     default:
       return state;
