@@ -36,6 +36,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header />
+            <Route exact path="/" component={Landing} />
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
@@ -48,8 +49,6 @@ class App extends Component {
                 path="/pending-request"
                 component={PendingRequests}
               />
-              <Route exact path="/" component={Landing} />
-              {/* list of all books for trade  */}
             </div>
           </div>
         </BrowserRouter>

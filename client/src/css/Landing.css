@@ -1,0 +1,16 @@
+.Landing .landing-container {
+  width: 100%;
+  height: 55vh;
+  background: url(../assets/books.jpg); /* Photo by Tom Hermans on Unsplash */
+  background-attachment: fixed;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 0;
+}
+
+.Landing .features-container {
+  padding: 20px;
+  width: 100%;
+  height: 30vh;
+}

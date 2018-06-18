@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions';
+import '../css/Landing.css';
 
 class Landing extends Component {
   state = {
@@ -18,8 +19,8 @@ class Landing extends Component {
 
   render() {
     return (
-      <div>
-        <div className="row">
+      <div className="Landing">
+        <div className="row landing-container">
           <form className="col s12">
             <div className="row">
               <div className="input-field col s6 offset-s3">
@@ -43,6 +44,29 @@ class Landing extends Component {
               </div>
             </div>
           </form>
+        </div>
+        <div className="row features-container">
+          <div className="col s12" />
+          <div className="row">
+            <div className="col s4 center-align">
+              <i className="medium material-icons">library_books</i>
+              <h5>Book Catalogue</h5>
+              <p>See the available books from other users</p>
+            </div>
+            <div className="col s4 center-align">
+              <i className="medium material-icons">search</i>
+              <h5>Book Search</h5>
+              <p>Explore from an extensive library of books</p>
+            </div>
+            <div className="col s4 center-align">
+              <i className="medium material-icons">swap_horiz</i>
+              <h5>Book Exchange</h5>
+              <p>
+                Manage book trade/exchanges safely through your private
+                dashboard
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     );

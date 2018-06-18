@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions';
-import './css/Header.css';
+import '../css/Header.css';
 
 class Header extends Component {
   state = {
@@ -100,19 +100,21 @@ class Header extends Component {
             {this.props.auth.isAuthenticated ? authLinks : guestLinks}
             <ul className="right">
               <li>
-                <input
-                  type="text"
-                  onChange={this.inputChangeHandler}
-                  style={{ width: '150px' }}
-                  value={this.state.query}
-                />
-                <i
-                  className="material-icons right"
-                  onClick={this.searchBookHandler}
-                  style={{ marginLeft: '0', cursor: 'pointer' }}
-                >
-                  search
-                </i>
+                <form classNam="book-search">
+                  <input
+                    type="text"
+                    onChange={this.inputChangeHandler}
+                    style={{ width: '150px' }}
+                    value={this.state.query}
+                  />
+                  <i
+                    className="material-icons right"
+                    onClick={this.searchBookHandler}
+                    style={{ marginLeft: '0', cursor: 'pointer' }}
+                  >
+                    search
+                  </i>
+                </form>
               </li>
               <li>
                 <Link to="all-books" className="right">
