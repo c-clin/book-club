@@ -113,9 +113,6 @@ export const onLoadTradeRequests = id => dispatch => {
 
 // making a trade request
 export const onTradeRequest = data => dispatch => {
-  console.log(data);
-  // need bookID, from, to
-
   const tradeData = {
     from: data.auth.user.id,
     to: data.owner,
@@ -149,20 +146,23 @@ export const onTradeBook = data => dispatch => {
     .catch(err => console.log(err));
 };
 
-// accept or reject trade requests
-export const onAcceptRequest = data => dispatch => {
+// accept trade requests
+export const onAcceptRequest = (data, decision) => dispatch => {
   const reqData = {
     _id: data._id,
     from: data.from,
     to: data.to,
-    bookID: data.book
+    bookID: data.book,
+    decision: decision
   };
 
-  // console.log(reqData);
+  console.log(reqData);
   axiosApi
-    .post('/trade/accept', reqData, {
+    .post('/trade/trade-response', reqData, {
       headers: { Authorization: localStorage.jwtToken }
     })
-    .then(res => console.log(res))
+    .then(res => {
+      dispatch(onLoadList());
+    })
     .catch(err => console.log(err));
 };

@@ -25,64 +25,63 @@ router.post(
   (req, res) => {
     const { bookID, from, to, title } = req.body;
 
-    // if (to === from) {
-    //   res.status(400).send({ err: 'You cannot trade with yourself.' });
-    // }
-    // test
-
-    Book.findOneAndUpdate(
-      {
-        _user: to,
-        _id: bookID
-      },
-      {
-        status: 'pending'
-      },
-      {
-        returnNewDocument: true
-      },
-      function(err, doc) {
-        if (err) {
-          console.log(err);
+    if (to === from) {
+      res.status(400).send({ err: 'You cannot trade with yourself.' });
+    } else {
+      Book.findOneAndUpdate(
+        {
+          _user: to,
+          _id: bookID
+        },
+        {
+          status: 'pending'
+        },
+        {
+          returnNewDocument: true
+        },
+        function(err, doc) {
+          if (err) {
+            console.log(err);
+          }
+          console.log(doc);
         }
-        console.log(doc);
-      }
-    );
+      );
 
-    Trade.findOne({ book: bookID, to }).then(trade => {
-      if (trade) {
-        res
-          .status(400)
-          .send({ error: 'This Book is on hold with another user!' });
-      }
-      const tradeRequest = new Trade({
-        book: bookID,
-        from,
-        to,
-        title,
-        date: Date.now()
+      Trade.findOne({ book: bookID, to }).then(trade => {
+        if (trade) {
+          res
+            .status(400)
+            .send({ error: 'This Book is on hold with another user!' });
+        }
+        const tradeRequest = new Trade({
+          book: bookID,
+          from,
+          to,
+          title,
+          date: Date.now()
+        });
+        console.log('new trade req: ' + tradeRequest);
+
+        try {
+          tradeRequest.save();
+          res.send('trade success');
+        } catch (err) {
+          res.status(422).send(err);
+        }
       });
-      console.log('new trade req: ' + tradeRequest);
-
-      try {
-        tradeRequest.save();
-        res.send('trade success');
-      } catch (err) {
-        res.status(422).send(err);
-      }
-    });
+    }
   }
 );
 
-// @route   Post api/trade/accept
-// @desc    On accepting trade request
+// @route   Post api/trade/trade-response
+// @desc    On accepting or denying other's trade request
 // access   Private
 
 router.post(
-  '/accept',
+  '/trade-response',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { _id, from, to, bookID } = req.body;
+    const { _id, from, to, bookID, decision } = req.body;
     var ownerName;
 
     Book.findOne({ _user: from }).then(book => {
@@ -93,32 +92,50 @@ router.post(
 
     // find Trade with the id and delete it from list
     Trade.deleteOne({ _id }, (err, doc) => {
-      if (err) {
-        console.log(err);
-      }
-      res.send('trade accepted');
-    });
+      if (err) console.log(err);
 
-    // find Book with the id and swap the owner
-    Book.findOneAndUpdate(
-      {
-        _id: bookID
-      },
-      {
-        ownerName: ownerName,
-        _user: from,
-        status: 'not-available'
-      },
-      {
-        returnNewDocument: true
-      },
-      function(err, doc) {
-        if (err) {
-          console.log(err);
-        }
-        console.log(doc);
+      // trade books if decision is accept
+      if (decision === 'accept') {
+        // find Book with the id and swap the owner
+        Book.findOneAndUpdate(
+          {
+            _id: bookID
+          },
+          {
+            ownerName: ownerName,
+            _user: from,
+            status: 'not-available'
+          },
+          {
+            returnNewDocument: true
+          },
+          function(err, doc) {
+            if (err) {
+              console.log(err);
+            }
+            res.send('trade accepted');
+          }
+        );
+      } else {
+        Book.findOneAndUpdate(
+          {
+            _id: bookID
+          },
+          {
+            status: 'not-available'
+          },
+          {
+            returnNewDocument: true
+          },
+          function(err, doc) {
+            if (err) {
+              console.log(err);
+            }
+            res.send('trade denied');
+          }
+        );
       }
-    );
+    });
   }
 );
 

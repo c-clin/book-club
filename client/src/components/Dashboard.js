@@ -32,10 +32,16 @@ export class Dashboard extends Component {
                 <td>{counter}</td>
                 <td>{req.title}</td>
                 <td>
-                  <button onClick={() => this.props.onAcceptRequest(req)}>
+                  <button
+                    onClick={() => this.props.onAcceptRequest(req, 'accept')}
+                  >
                     Accept
                   </button>
-                  <button>Reject</button>
+                  <button
+                    onClick={() => this.props.onAcceptRequest(req, 'deny')}
+                  >
+                    Deny
+                  </button>
                 </td>
               </tr>
             );
@@ -86,7 +92,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onLoadList: () => dispatch(actions.onLoadList()),
     onLoadRequests: user => dispatch(actions.onLoadTradeRequests(user)),
-    onAcceptRequest: reqData => dispatch(actions.onAcceptRequest(reqData))
+    onAcceptRequest: (reqData, decision) =>
+      dispatch(actions.onAcceptRequest(reqData, decision))
   };
 };
 
