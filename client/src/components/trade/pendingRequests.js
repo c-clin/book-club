@@ -46,7 +46,7 @@ export class PendingRequests extends Component {
   render() {
     const noReqMsg = <p>You have no pending requests right now!</p>;
     return (
-      <div>
+      <div style={{ paddingTop: '90px' }}>
         {this.props.books.pendingRequests ? this.pendingRequests() : null}
         {this.props.books.pendingRequests.length === 0 ? noReqMsg : null}
       </div>

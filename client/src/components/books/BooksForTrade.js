@@ -22,11 +22,21 @@ export class BooksForTrade extends Component {
           image={book.imgURL}
           status={book.status}
           owner={book._user}
+          link={book.link}
           username={book.ownerName}
           bookID={book._id}
         />
       );
     });
+
+    let welcomeMessage;
+    this.props.books.availableBooks.length > 0
+      ? (welcomeMessage = <p className="welcome-message">Available books: </p>)
+      : (welcomeMessage = (
+          <p className="welcome-message">
+            Oops there are no books to exchange right now!
+          </p>
+        ));
 
     const errorMessage = (
       <p
@@ -41,8 +51,9 @@ export class BooksForTrade extends Component {
     );
 
     return (
-      <div className="layout-container">
+      <div className="layout-container" style={{ paddingTop: '30px' }}>
         {this.props.auth.isAuthenticated ? null : errorMessage}
+        {this.props.auth.isAuthenticated ? welcomeMessage : null}
         <div className="BookItem-container">{renderContent}</div>
       </div>
     );

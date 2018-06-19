@@ -21,6 +21,14 @@ class Header extends Component {
     this.setState({ query: '' });
   };
 
+  checkEnterHandler = e => {
+    console.log(e.keyCode);
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      this.searchBookHandler();
+    }
+  };
+
   logoutHandler = e => {
     e.preventDefault();
     this.props.history.push('/all-books');
@@ -121,6 +129,8 @@ class Header extends Component {
                     onChange={this.inputChangeHandler}
                     style={{ width: '150px' }}
                     value={this.state.query}
+                    placeholder="Search book.."
+                    onKeyDown={this.checkEnterHandler}
                   />
                   <i
                     className="material-icons right"

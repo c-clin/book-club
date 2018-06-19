@@ -4,8 +4,13 @@
 }
 
 .Header {
-  position: relative;
+  position: fixed;
+  width: 100%;
   z-index: 1;
+}
+
+.Header nav {
+  background-color: rgba(238, 110, 114, 0.8);
 }
 
 .Header .nav-wrapper .header {
@@ -27,7 +32,7 @@
   padding: 10px;
   margin-top: 12px;
   border-radius: 10px;
-  border: 1px solid white;
+  border: 1.5px solid white;
 }
 
 .Header .book-search input {

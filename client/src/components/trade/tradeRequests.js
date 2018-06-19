@@ -55,7 +55,7 @@ export class TradeRequests extends Component {
     const noReqMsg = <p>You have no trade requests right now!</p>;
 
     return (
-      <div>
+      <div style={{ paddingTop: '90px' }}>
         {this.props.books.tradeRequests ? this.tradeRequests() : null}
         {this.props.books.tradeRequests.length === 0 ? noReqMsg : null}
       </div>
