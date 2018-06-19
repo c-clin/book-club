@@ -2,14 +2,17 @@ export {
   onFetchBook,
   onAddBook,
   onDeleteBook,
-  onLoadList,
+  onLoadList
+} from './booksAction';
+
+export {
   onTradeBook,
   onLoadBooksForTrade,
   onTradeRequest,
   onLoadTradeRequests,
   respondToRequests,
   cancelPendingRequests
-} from './googleBooks';
+} from './tradeAction';
 
 export {
   loginUser,

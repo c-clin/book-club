@@ -26,21 +26,11 @@ export class Dashboard extends Component {
       );
     });
 
-    let welcomeMsg;
-    if (this.props.books.bookList.length > 0) {
-      welcomeMsg = (
-        <p className="welcome-message">
-          Welcome back, {this.props.auth.user.name.split(' ')[0]}!
-        </p>
-      );
-    } else {
-      welcomeMsg = (
-        <p className="welcome-message">
-          Welcome, {this.props.auth.user.name.split(' ')[0]}! You can start
-          adding books to your list!
-        </p>
-      );
-    }
+    let noBooksMsg = (
+      <p className="welcome-message">
+        Looks like you don't have any books right now!
+      </p>
+    );
 
     let dashBoardContent;
     if (this.props.books.loading === true) {
@@ -52,7 +42,10 @@ export class Dashboard extends Component {
     } else {
       dashBoardContent = (
         <div>
-          {welcomeMsg}
+          <p className="welcome-message">
+            Hi, {this.props.auth.user.name.split(' ')[0]}!
+          </p>
+          {this.props.books.bookList.length === 0 ? noBooksMsg : null}
           <div className="BookItem-container">{renderContent}</div>
         </div>
       );

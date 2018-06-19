@@ -28,6 +28,8 @@ class Header extends Component {
   };
 
   toggleDropdown = () => {
+    this.props.loadRequests(this.props.auth.user.id, 'pending');
+    this.props.loadRequests(this.props.auth.user.id, 'trade');
     let currentDropdown = this.state.openDropdown;
     this.setState({ openDropdown: !currentDropdown });
   };
@@ -152,7 +154,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onSearchBook: search => dispatch(actions.onFetchBook(search)),
-    onLogout: () => dispatch(actions.logoutUser())
+    onLogout: () => dispatch(actions.logoutUser()),
+    loadRequests: (user, pending) =>
+      dispatch(actions.onLoadTradeRequests(user, pending))
   };
 };
 
