@@ -1,6 +1,7 @@
 export {
   onFetchBook,
   onAddBook,
+  onDeleteBook,
   onLoadList,
   onTradeBook,
   onLoadBooksForTrade,

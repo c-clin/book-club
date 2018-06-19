@@ -107,6 +107,21 @@ export const onAddBook = bookData => dispatch => {
     .catch(err => console.log(err));
 };
 
+// delete a book from user's list
+export const onDeleteBook = bookData => dispatch => {
+  console.log(bookData);
+  const finalData = {
+    apiID: bookData
+  };
+
+  axiosApi
+    .post('books/delete-book', finalData, {
+      headers: { Authorization: localStorage.jwtToken }
+    })
+    .then(res => dispatch(onLoadList()))
+    .catch(e => console.log(e));
+};
+
 // load user's trade/pending requests
 export const onLoadTradeRequests = (id, reqType) => dispatch => {
   const reqData = {

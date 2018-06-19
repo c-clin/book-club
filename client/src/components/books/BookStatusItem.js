@@ -36,6 +36,14 @@ export class BookStatusItem extends Component {
   render() {
     return (
       <div className="BookItem hoverable">
+        <div className="right-align" style={{ height: '17px' }}>
+          <i
+            onClick={() => this.props.onDeleteBook(this.props.apiID)}
+            className="tiny material-icons delete-btn"
+          >
+            delete_forever
+          </i>
+        </div>
         <h5 className="book-item-title">{this.props.title}</h5>
         <p className="book-item-author">By: {this.props.author}</p>
         <p className="book-item-link">
@@ -61,7 +69,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTradeStatus: data => dispatch(actions.onTradeBook(data))
+    onTradeStatus: data => dispatch(actions.onTradeBook(data)),
+    onDeleteBook: data => dispatch(actions.onDeleteBook(data))
   };
 };
 

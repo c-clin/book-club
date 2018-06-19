@@ -49,4 +49,19 @@ router.post(
   }
 );
 
+// @route   Post api/books/delete-book
+// @desc    Delete book from user's list
+// access   Private
+router.post(
+  '/delete-book',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { apiID } = req.body;
+    Book.deleteOne({ apiID }, (err, doc) => {
+      if (err) console.log(err);
+      res.send('delete success');
+    });
+  }
+);
+
 module.exports = router;
