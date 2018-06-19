@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions';
+import _ from 'lodash';
 
 class Register extends Component {
   state = {
     name: '',
     email: '',
-    password: ''
+    password: '',
+    error: false
   };
   inputChangeHandler = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -19,15 +21,26 @@ class Register extends Component {
       email: this.state.email,
       password: this.state.password
     };
-
-    this.props.onRegister(userData, this.props.history);
+    if (_.some(userData, _.isEmpty)) {
+      this.setState({ error: true });
+    } else {
+      this.setState({ error: false });
+      this.props.onRegister(userData, this.props.history);
+    }
   };
 
   render() {
+    const errMsg = <p style={{ color: 'red' }}>Please fill in all fields!</p>;
     return (
       <div>
         <form className="col s6" style={{ marginTop: '30px' }}>
           <div className="row">
+            <div
+              className="input-field col s8 offset-s2"
+              style={{ marginBottom: '20px' }}
+            >
+              {this.state.error ? errMsg : null}
+            </div>
             <div className="input-field col s8 offset-s2">
               <input
                 type="text"

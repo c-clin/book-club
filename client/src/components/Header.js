@@ -100,7 +100,7 @@ class Header extends Component {
             {this.props.auth.isAuthenticated ? authLinks : guestLinks}
             <ul className="right">
               <li>
-                <form classNam="book-search">
+                <form className="book-search">
                   <input
                     type="text"
                     onChange={this.inputChangeHandler}

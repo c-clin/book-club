@@ -18,7 +18,7 @@ export class BookStatusItem extends Component {
           </button>
         );
       case 'pending':
-        return <p>There's a pending request for this book!</p>;
+        return <p>Someone made a request for this book!</p>;
       default:
         return;
     }

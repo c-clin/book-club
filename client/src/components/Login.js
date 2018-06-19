@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../store/actions';
+import _ from 'lodash';
 
 class Login extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    error: false
   };
 
   inputChangeHandler = event => {
@@ -18,14 +20,29 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password
     };
-    this.props.onLogin(userData, this.props.history);
+
+    if (_.some(userData, _.isEmpty)) {
+      this.setState({ error: true });
+      console.log('empty');
+    } else {
+      console.log('login');
+      this.setState({ error: false });
+      this.props.onLogin(userData, this.props.history);
+    }
   };
 
   render() {
+    const errMsg = <p style={{ color: 'red' }}>Please fill in all fields!</p>;
     return (
       <div>
         <form className="col s6" style={{ marginTop: '30px' }}>
           <div className="row">
+            <div
+              className="input-field col s8 offset-s2"
+              style={{ marginBottom: '20px' }}
+            >
+              {this.state.error ? errMsg : null}
+            </div>
             <div className="input-field col s8 offset-s2">
               <input
                 type="email"
