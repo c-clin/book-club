@@ -46,3 +46,13 @@ input:not([type]):focus:not([readonly]) {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+
+.req-count {
+  color: white;
+  font-size: 0.7em;
+  margin: 0 5px;
+  border: 1px solid rgb(66, 66, 66);
+  background-color: rgba(160, 160, 160, 0.863);
+  padding: 1px 5px 1px 5px;
+  border-radius: 50%;
+}

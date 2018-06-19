@@ -33,8 +33,6 @@ class Header extends Component {
   };
 
   render() {
-    console.log(this.props.auth.isAuthenticated);
-
     const authDropdown = (
       <ul
         id="dropdown1"
@@ -42,10 +40,20 @@ class Header extends Component {
         style={{ display: this.state.openDropdown ? 'block' : 'none' }}
       >
         <li>
-          <Link to="/trade-request">Trade Requests</Link>
+          <Link to="/trade-request">
+            Trade Requests &nbsp;
+            <span className="req-count">
+              {this.props.books.tradeRequests.length}
+            </span>
+          </Link>
         </li>
         <li>
-          <Link to="/pending-request">Pending Requests</Link>
+          <Link to="/pending-request">
+            Pending Requests &nbsp;
+            <span className="req-count">
+              {this.props.books.pendingRequests.length}
+            </span>
+          </Link>
         </li>
         <li>
           <a href="" onClick={this.logoutHandler}>
@@ -108,8 +116,6 @@ class Header extends Component {
               >
                 <form className="book-search valign-wrapper">
                   <input
-                    // type="text"
-                    // className="valign-wrapper"
                     onChange={this.inputChangeHandler}
                     style={{ width: '150px' }}
                     value={this.state.query}

@@ -41,10 +41,7 @@ class Landing extends Component {
             <div className="col s4 center-align">
               <i className="medium material-icons">search</i>
               <h5>Book Search</h5>
-              <p>
-                Explore from an extensive library of books and easily find more
-                information if needed.
-              </p>
+              <p>Explore from an extensive library of books.</p>
             </div>
             <div className="col s4 center-align">
               <i className="medium material-icons">swap_horiz</i>

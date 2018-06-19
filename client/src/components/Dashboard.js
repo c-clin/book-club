@@ -7,6 +7,7 @@ import '../css/BookItemContainer.css';
 
 export class Dashboard extends Component {
   componentDidMount = () => {
+    this.props.books.loading = true;
     this.props.onLoadList();
   };
 
