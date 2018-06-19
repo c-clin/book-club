@@ -64,10 +64,16 @@ i.delete-btn {
   transition: 0.3s ease-in-out;
   font-size: 1.3rem;
   margin: 2px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  padding: 2px;
 }
 
 i.delete-btn:hover {
   color: rgb(236, 54, 54);
   transition: 0.3s ease-in-out;
-  font-size: 1.4rem;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 2px;
+  background-color: rgba(214, 211, 211, 0.3);
 }

@@ -36,7 +36,7 @@ export class BookStatusItem extends Component {
   render() {
     return (
       <div className="BookItem hoverable">
-        <div className="right-align" style={{ height: '17px' }}>
+        <div className="right-align" style={{ height: '19px' }}>
           <i
             onClick={() => this.props.onDeleteBook(this.props.apiID)}
             className="tiny material-icons delete-btn"
