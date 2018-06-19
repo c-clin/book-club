@@ -27,17 +27,28 @@ const BookResult = props => {
   });
 
   const errorMessage = (
-    <p>
+    <p className="welcome-message" style={{ fontSize: '17px' }}>
       You must <Link to="/login">log in</Link> to trade!
     </p>
   );
 
-  return (
-    <div>
-      {props.auth.isAuthenticated ? null : errorMessage}
-      <div className="BookItem-container">{renderContent}</div>
-    </div>
-  );
+  let bookResultContent;
+  if (props.books.loading === true) {
+    bookResultContent = (
+      <div className="progress">
+        <div className="indeterminate" />
+      </div>
+    );
+  } else {
+    bookResultContent = (
+      <div>
+        {props.auth.isAuthenticated ? null : errorMessage}
+        <div className="BookItem-container"> {renderContent}</div>;
+      </div>
+    );
+  }
+
+  return <div>{bookResultContent}</div>;
 };
 
 const mapStateToProps = state => {

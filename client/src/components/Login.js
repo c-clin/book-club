@@ -24,9 +24,8 @@ class Login extends Component {
 
     if (_.some(userData, _.isEmpty)) {
       this.setState({ error: true });
-      console.log('empty');
     } else {
-      console.log('login');
+      this.props.auth.loading = true;
       this.setState({ error: false });
       this.props.onLogin(userData, this.props.history);
     }
@@ -79,6 +78,12 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     onLogin: (userData, history) =>
@@ -87,6 +92,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(withRouter(Login));

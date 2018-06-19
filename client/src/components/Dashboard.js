@@ -25,16 +25,39 @@ export class Dashboard extends Component {
       );
     });
 
-    return (
-      <div className="layout-container">
-        {this.props.auth.user ? (
-          <p className="welcome-message">
-            Hello, {this.props.auth.user.name.split(' ')[0]} :)
-          </p>
-        ) : null}
-        <div className="BookItem-container">{renderContent}</div>
-      </div>
-    );
+    let welcomeMsg;
+    if (this.props.books.bookList.length > 0) {
+      welcomeMsg = (
+        <p className="welcome-message">
+          Welcome back, {this.props.auth.user.name.split(' ')[0]}!
+        </p>
+      );
+    } else {
+      welcomeMsg = (
+        <p className="welcome-message">
+          Welcome, {this.props.auth.user.name.split(' ')[0]}! You can start
+          adding books to your list!
+        </p>
+      );
+    }
+
+    let dashBoardContent;
+    if (this.props.books.loading === true) {
+      dashBoardContent = (
+        <div className="progress">
+          <div className="indeterminate" />
+        </div>
+      );
+    } else {
+      dashBoardContent = (
+        <div>
+          {welcomeMsg}
+          <div className="BookItem-container">{renderContent}</div>
+        </div>
+      );
+    }
+
+    return <div className="layout-container">{dashBoardContent}</div>;
   }
 }
 

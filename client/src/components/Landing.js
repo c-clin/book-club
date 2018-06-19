@@ -36,10 +36,7 @@ class Landing extends Component {
             <div className="col s4 center-align">
               <i className="medium material-icons">library_books</i>
               <h5>Book Catalogue</h5>
-              <p>
-                Access a list of all the available books from other users that
-                are ready to be borrowed.
-              </p>
+              <p>Access all the available books listed by other users.</p>
             </div>
             <div className="col s4 center-align">
               <i className="medium material-icons">search</i>
@@ -53,7 +50,7 @@ class Landing extends Component {
               <i className="medium material-icons">swap_horiz</i>
               <h5>Book Exchange</h5>
               <p>
-                Manage the book exchanges safely through your private dashboard
+                Manage the book exchange safely through your private dashboard.
               </p>
             </div>
           </div>

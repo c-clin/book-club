@@ -15,6 +15,7 @@ class Header extends Component {
   };
 
   searchBookHandler = () => {
+    this.props.books.loading = true;
     this.props.onSearchBook(this.state.query);
     this.props.history.push('/search');
     this.setState({ query: '' });
@@ -137,7 +138,8 @@ class Header extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    books: state.books
   };
 };
 

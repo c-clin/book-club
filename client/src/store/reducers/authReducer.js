@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 const initialState = {
   isAuthenticated: false,
-  userName: ''
+  loading: false
 };
 
 export default function(state = initialState, action) {
@@ -12,7 +12,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isAuthenticated: !_.isEmpty(action.payload),
-        user: action.payload
+        user: action.payload,
+        loading: false
       };
     default:
       return state;

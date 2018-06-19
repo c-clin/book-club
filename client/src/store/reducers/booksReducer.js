@@ -5,7 +5,8 @@ const initialState = {
   bookList: [],
   availableBooks: [],
   tradeRequests: [],
-  pendingRequests: []
+  pendingRequests: [],
+  loading: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,12 +14,14 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SEARCH_BOOK:
       return {
         ...state,
-        searchList: action.searchList
+        searchList: action.searchList,
+        loading: false
       };
     case actionTypes.LOAD_BOOK_LIST:
       return {
         ...state,
-        bookList: action.bookList
+        bookList: action.bookList,
+        loading: false
       };
     case actionTypes.LOAD_AVAILABLE_BOOKS:
       return {

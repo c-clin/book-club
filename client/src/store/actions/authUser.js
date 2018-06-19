@@ -20,7 +20,6 @@ export const loginUser = (userData, history) => {
         axios.defaults.headers.common['Authorization'] = token;
         const decoded = jwt_decode(token);
         dispatch(setCurrentUser(decoded));
-        console.log(decoded);
         history.push('/dashboard');
       })
       .catch(err => console.log(err));
@@ -44,6 +43,5 @@ export const registerUser = (userData, history) => dispatch => {
       );
       history.push('/login');
     })
-    // TODO: change how the error is dispayed
     .catch(err => alert(err.response.data.email));
 };
