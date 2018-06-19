@@ -7,10 +7,14 @@ const BookTradeItem = props => {
   let tradeBtn =
     props.auth.isAuthenticated && props.status === 'available' ? (
       <button
+        style={{
+          fontSize: '12px',
+          padding: '0 1em'
+        }}
         className="waves-effect waves-light btn"
         onClick={() => props.onTradeBook(props)}
       >
-        Trade
+        Request Trade
       </button>
     ) : null;
 

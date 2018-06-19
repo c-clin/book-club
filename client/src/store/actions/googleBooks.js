@@ -147,10 +147,13 @@ export const onLoadTradeRequests = (id, reqType) => dispatch => {
 export const onTradeRequest = data => dispatch => {
   const tradeData = {
     from: data.auth.user.id,
+    from_name: data.auth.user.name,
     to: data.owner,
+    to_name: data.username,
     bookID: data.bookID,
     title: data.title
   };
+  console.log(tradeData);
   axiosApi
     .post('/trade/trade-request', tradeData, {
       headers: { Authorization: localStorage.jwtToken }

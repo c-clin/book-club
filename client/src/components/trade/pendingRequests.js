@@ -15,6 +15,7 @@ export class PendingRequests extends Component {
           <tr>
             <th>#</th>
             <th>Book</th>
+            <th>To</th>
             <th>Date</th>
             <th>Action</th>
           </tr>
@@ -27,6 +28,7 @@ export class PendingRequests extends Component {
               <tr key={counter}>
                 <td>{counter}</td>
                 <td>{req.title}</td>
+                <td>{req.to_name}</td>
                 <td>{new Date(req.date).toLocaleDateString()}</td>
                 <td>
                   <button onClick={() => this.props.cancelPendingReq(req)}>

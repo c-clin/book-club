@@ -24,7 +24,7 @@ router.post(
   '/trade-request',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { bookID, from, to, title } = req.body;
+    const { bookID, from, to, from_name, to_name, title } = req.body;
 
     if (to === from) {
       res.status(400).send({ err: 'You cannot trade with yourself.' });
@@ -58,10 +58,11 @@ router.post(
           book: bookID,
           from,
           to,
+          from_name,
+          to_name,
           title,
           date: Date.now()
         });
-        console.log('new trade req: ' + tradeRequest);
 
         try {
           tradeRequest.save();

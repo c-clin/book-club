@@ -10,10 +10,12 @@ const TradeSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  from_name: String,
   to: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  to_name: String,
   title: String,
   status: {
     type: String,

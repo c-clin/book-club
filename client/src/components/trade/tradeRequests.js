@@ -15,6 +15,7 @@ export class TradeRequests extends Component {
           <tr>
             <th>#</th>
             <th>Book</th>
+            <th>From</th>
             <th>Date</th>
             <th>Action</th>
           </tr>
@@ -28,6 +29,7 @@ export class TradeRequests extends Component {
               <tr key={counter}>
                 <td>{counter}</td>
                 <td>{req.title}</td>
+                <td>{req.from_name}</td>
                 <td>{new Date(req.date).toLocaleDateString()}</td>
                 <td>
                   <button
