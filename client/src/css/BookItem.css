@@ -1,0 +1,35 @@
+.BookItem {
+  width: 150px;
+  text-align: center;
+  padding: 10px;
+  background-color: #faded0;
+  margin: 10px;
+}
+
+.BookItem .book-item-title {
+  font-size: 1em;
+  margin: 5px 0px;
+}
+
+.BookItem .book-item-author {
+  font-size: 0.8em;
+  margin: 5px 0px;
+}
+
+.BookItem .book-item-link {
+  margin: 5px 0px;
+  color: #abcdef;
+}
+
+.BookItem .book-item-link a {
+  color: #abcdef;
+}
+
+.BookItem .book-item-image {
+  height: 200px;
+  position: relative;
+}
+
+.BookItem .book-item-owner {
+  font-size: 0.9em;
+}

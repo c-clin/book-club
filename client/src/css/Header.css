@@ -1,3 +1,12 @@
+* {
+  font-family: 'Oxygen', sans-serif;
+  box-sizing: border-box;
+}
+
+.Header .nav-wrapper .header {
+  font-family: 'Rye', cursive;
+}
+
 .Header .dropdown-content {
   /* display: block; */
   width: 140px;
@@ -6,4 +15,29 @@
   transform-origin: 0px 0px 0px;
   opacity: 1;
   transform: scaleX(1) scaleY(1);
+}
+
+.Header .book-search {
+  height: 40px;
+  padding: 10px;
+  margin-top: 12px;
+  border-radius: 10px;
+  border: 1px solid white;
+}
+
+.Header .book-search input {
+  border: 0;
+  margin: 0;
+  border-bottom: transparent;
+}
+
+.Header .book-search input:focus {
+  border-bottom: none;
+  box-shadow: none;
+}
+
+input:not([type]):focus:not([readonly]) {
+  border-bottom: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }

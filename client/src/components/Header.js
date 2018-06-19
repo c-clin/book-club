@@ -94,15 +94,21 @@ class Header extends Component {
         {this.props.auth.isAuthenticated ? authDropdown : null}
         <nav>
           <div className="nav-wrapper">
-            <Link to="/" className="left brand-logo">
+            <Link to="/" className="left brand-logo header">
               Book Club
             </Link>
             {this.props.auth.isAuthenticated ? authLinks : guestLinks}
             <ul className="right">
-              <li>
-                <form className="book-search">
+              <li
+                style={{
+                  position: 'absolute',
+                  left: '40%'
+                }}
+              >
+                <form className="book-search valign-wrapper">
                   <input
-                    type="text"
+                    // type="text"
+                    // className="valign-wrapper"
                     onChange={this.inputChangeHandler}
                     style={{ width: '150px' }}
                     value={this.state.query}

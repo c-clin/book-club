@@ -23,24 +23,9 @@ class Landing extends Component {
         <div className="row landing-container">
           <form className="col s12">
             <div className="row">
-              <div className="input-field col s6 offset-s3">
-                <div>
-                  <input
-                    type="text"
-                    value={this.state.query}
-                    onChange={this.inputChangeHandler}
-                  />
-                  <span>
-                    <button
-                      className="btn waves-effect waves-light"
-                      type="button"
-                      onClick={this.searchBookHandler}
-                    >
-                      Search
-                      <i className="material-icons right">send</i>
-                    </button>
-                  </span>
-                </div>
+              <div className="header col s6 offset-s3 center-align">
+                <h1>Book Club</h1>
+                <p>Join a community of book lovers!</p>
               </div>
             </div>
           </form>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
+import '../../css/BookItem.css';
 
 export class BookStatusItem extends Component {
   actionBtn = () => {
@@ -26,15 +27,17 @@ export class BookStatusItem extends Component {
 
   render() {
     return (
-      <div style={{ width: '150px' }}>
-        <h5>{this.props.title}</h5>
-        <p>{this.props.author}</p>
-        <p>
+      <div className="BookItem">
+        <h5 className="book-item-title">{this.props.title}</h5>
+        <p className="book-item-author">By: {this.props.author}</p>
+        <p className="book-item-link">
           <a href={this.props.link} target="_blank">
             Website
           </a>
         </p>
-        <img src={this.props.image} alt={this.props.title} width="128" />
+        <div className="book-item-image">
+          <img src={this.props.image} alt={this.props.title} width="128" />
+        </div>
         {this.actionBtn()}
       </div>
     );

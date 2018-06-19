@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import BookTradeItem from './BookTradeItem';
 
-import './BookItem.css';
+import '../../css/BookItemContainer.css';
 
 export class BooksForTrade extends Component {
   componentDidMount = () => {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../store/actions';
 import BookStatusItem from './books/BookStatusItem';
 
-import './books/BookItem.css';
+import '../css/BookItemContainer.css';
 
 export class Dashboard extends Component {
   componentDidMount = () => {
@@ -27,9 +27,10 @@ export class Dashboard extends Component {
 
     return (
       <div>
-        {/* TODO: add your pending and trade request on top */}
         {this.props.auth.user ? (
-          <span>Hello, {this.props.auth.user.name}!</span>
+          <span className="welcome-message">
+            Hello, {this.props.auth.user.name}!
+          </span>
         ) : null}
 
         <div className="BookItem-container">{renderContent}</div>

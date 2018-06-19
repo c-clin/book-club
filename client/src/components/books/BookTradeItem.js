@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
+import '../../css/BookItem.css';
 
 const BookTradeItem = props => {
   let tradeBtn =
@@ -16,14 +17,16 @@ const BookTradeItem = props => {
     ) : null;
 
   return (
-    <div style={{ width: '150px' }}>
-      <h5>{props.title}</h5>
-      <p>{props.author}</p>
-      <p>
+    <div className="BookItem">
+      <h5 className="book-item-title">{props.title}</h5>
+      <p className="book-item-author">{props.author}</p>
+      <p className="book-item-link">
         <a href={props.link}>Website</a>
       </p>
-      <img src={props.image} alt={props.title} width="128" />
-      <p>Owner: {props.username} </p>
+      <div className="book-item-image">
+        <img src={props.image} alt={props.title} width="128" />
+      </div>
+      <p className="book-item-owner">Owned by: {props.username} </p>
       {tradeBtn}
       {onHoldText}
     </div>

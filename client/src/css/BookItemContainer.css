@@ -5,3 +5,7 @@
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
+
+.welcome-message {
+  font-size: 30px;
+}
