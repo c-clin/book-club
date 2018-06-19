@@ -28,7 +28,7 @@ export class Dashboard extends Component {
 
     let noBooksMsg = (
       <p className="welcome-message">
-        Looks like you don't have any books right now!
+        Looks like you don't have any books right now.
       </p>
     );
 

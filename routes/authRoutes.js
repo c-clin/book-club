@@ -13,7 +13,7 @@ const User = require('../models/User');
 router.post('/register', (req, res) => {
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      return res.status(400).json({ email: 'Email already exists' });
+      return res.status(400).json({ error: 'Email already exists' });
     } else {
       const newUser = new User({
         name: req.body.name,
@@ -44,7 +44,7 @@ router.post('/login', (req, res) => {
 
   User.findOne({ email }).then(user => {
     if (!user) {
-      return res.status(404).json({ email: 'User not found' });
+      return res.status(404).json({ error: 'User not found' });
     }
 
     bcrypt.compare(password, user.password).then(isMatch => {
@@ -63,7 +63,7 @@ router.post('/login', (req, res) => {
           }
         );
       } else {
-        res.status(400).json({ password: 'Password incorrect!' });
+        res.status(400).json({ error: 'Password incorrect' });
       }
     });
   });

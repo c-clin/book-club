@@ -27,7 +27,7 @@ router.post(
     const { bookID, from, to, from_name, to_name, title } = req.body;
 
     if (to === from) {
-      res.status(400).send({ err: 'You cannot trade with yourself.' });
+      res.status(400).send({ error: 'You cannot trade with yourself.' });
     } else {
       Book.findOneAndUpdate(
         {

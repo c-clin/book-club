@@ -42,6 +42,9 @@ class Login extends Component {
               style={{ marginBottom: '20px' }}
             >
               {this.state.error ? errMsg : null}
+              <p style={{ color: 'red' }}>
+                {this.props.auth.error ? this.props.auth.error : null}
+              </p>
             </div>
             <div className="input-field col s8 offset-s2">
               <input

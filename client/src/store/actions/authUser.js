@@ -10,6 +10,13 @@ export const setCurrentUser = decoded => {
   };
 };
 
+export const onError = err => {
+  return {
+    type: actionTypes.ERROR_MESSAGE,
+    payload: err
+  };
+};
+
 export const loginUser = (userData, history) => {
   return dispatch => {
     axios
@@ -22,7 +29,11 @@ export const loginUser = (userData, history) => {
         dispatch(setCurrentUser(decoded));
         history.push('/dashboard');
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err.response.data.error);
+        const errMsg = err.response.data.error;
+        dispatch(onError(errMsg));
+      });
   };
 };
 
