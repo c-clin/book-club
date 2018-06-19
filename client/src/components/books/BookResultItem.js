@@ -1,34 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import '../../css/BookItem.css';
 
-const BookResultItem = props => {
-  let addBookBtn = props.auth.isAuthenticated ? (
-    <button
-      className="waves-effect waves-light btn"
-      onClick={() => props.onAddBook(props)}
-    >
-      Add Book
-    </button>
-  ) : null;
+export class BookResultItem extends Component {
+  state = {
+    addBtn: 'Add Book'
+  };
 
-  return (
-    <div className="BookItem hoverable">
-      <h5 className="book-item-title">{props.title}</h5>
-      <p className="book-item-author">By: {props.author}</p>
-      <p className="book-item-link">
-        <a href={props.link} target="_blank">
-          Website
-        </a>
-      </p>
-      <div className="book-item-image">
-        <img src={props.image} alt={props.title} width="128" />
+  clickButtonHandler = () => {
+    this.setState({ addBtn: 'Book Added' });
+    this.props.onAddBook(this.props);
+  };
+
+  render() {
+    let addBookBtn = this.props.auth.isAuthenticated ? (
+      <button
+        className="waves-effect waves-light btn"
+        style={{ fontSize: '11px' }}
+        onClick={this.clickButtonHandler}
+      >
+        {this.state.addBtn}
+      </button>
+    ) : null;
+
+    return (
+      <div className="BookItem hoverable">
+        <h5 className="book-item-title">{this.props.title}</h5>
+        <p className="book-item-author">By: {this.props.author}</p>
+        <p className="book-item-link">
+          <a href={this.props.link} target="_blank">
+            Website
+          </a>
+        </p>
+        <div className="book-item-image">
+          <img src={this.props.image} alt={this.props.title} width="128" />
+        </div>
+        {addBookBtn}
       </div>
-      {addBookBtn}
-    </div>
-  );
-};
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {

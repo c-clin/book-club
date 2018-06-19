@@ -22,7 +22,7 @@ const BookTradeItem = props => {
     ) : null;
 
   return (
-    <div className="BookItem hoverable">
+    <div className="BookItem hoverable" style={{ height: '400px' }}>
       <h5 className="book-item-title">{props.title}</h5>
       <p className="book-item-author">{props.author}</p>
       <p className="book-item-link">

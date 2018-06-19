@@ -41,7 +41,7 @@ export class BooksForTrade extends Component {
     );
 
     return (
-      <div className="layout-container" style={{ paddingTop: '60px' }}>
+      <div className="layout-container">
         {this.props.auth.isAuthenticated ? null : errorMessage}
         <div className="BookItem-container">{renderContent}</div>
       </div>

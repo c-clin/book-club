@@ -18,7 +18,7 @@
 .BookItem .book-item-author {
   font-size: 0.8em;
   margin: 5px 0px;
-  color: #fff;
+  color: #d6d6d6;
   font-weight: 300;
 }
 
@@ -30,6 +30,13 @@
 .BookItem .book-item-link a {
   color: #66e8ff;
   font-size: 0.8em;
+  transition: 0.3s ease-in-out;
+}
+
+.BookItem .book-item-link a:hover {
+  color: #67d5e9;
+  font-size: 0.8em;
+  transition: 0.3s ease-in-out;
 }
 
 .BookItem .book-item-image {

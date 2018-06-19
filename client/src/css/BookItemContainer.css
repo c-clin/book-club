@@ -1,7 +1,7 @@
 .BookItem-container {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-start;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   padding: 0 5em;
@@ -12,7 +12,7 @@
 
 .layout-container {
   left: 0;
-  position: absolute;
+  position: relative;
   bottom: 0;
   right: 0;
   top: 0;
@@ -20,7 +20,7 @@
 
 .welcome-message {
   font-size: 30px;
-  padding: 85px 5% 0 5%;
+  padding: 3% 5% 0 5%;
   background-color: #ffecd4;
   margin: 0;
   font-weight: 300;
