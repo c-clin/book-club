@@ -32,7 +32,7 @@ export class BooksForTrade extends Component {
       <p
         style={{
           margin: '0',
-          padding: '10px 40px',
+          padding: '85px 40px 0 40px',
           backgroundColor: '#ffecd4'
         }}
       >

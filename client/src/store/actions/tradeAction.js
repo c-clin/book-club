@@ -66,7 +66,7 @@ export const onTradeRequest = data => dispatch => {
       headers: { Authorization: localStorage.jwtToken }
     })
     .then(res => dispatch(onLoadBooksForTrade()))
-    .catch(err => console.log(err));
+    .catch(err => alert(err.response.data.err));
 };
 
 // toggle whether to put a book on user's list up for trade

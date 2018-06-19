@@ -12,15 +12,16 @@
 
 .layout-container {
   left: 0;
-  position: relative;
+  position: absolute;
   bottom: 0;
   right: 0;
   top: 0;
+  background-color: #ffecd4;
 }
 
 .welcome-message {
   font-size: 30px;
-  padding: 3% 5% 0 5%;
+  padding: 85px 5% 0 5%;
   background-color: #ffecd4;
   margin: 0;
   font-weight: 300;
