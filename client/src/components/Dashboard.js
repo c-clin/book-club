@@ -26,13 +26,12 @@ export class Dashboard extends Component {
     });
 
     return (
-      <div>
+      <div className="layout-container">
         {this.props.auth.user ? (
-          <span className="welcome-message">
-            Hello, {this.props.auth.user.name}!
-          </span>
+          <p className="welcome-message">
+            Hello, {this.props.auth.user.name.split(' ')[0]} :)
+          </p>
         ) : null}
-
         <div className="BookItem-container">{renderContent}</div>
       </div>
     );

@@ -6,7 +6,12 @@ import '../../css/BookItem.css';
 const BookTradeItem = props => {
   let tradeBtn =
     props.auth.isAuthenticated && props.status === 'available' ? (
-      <button onClick={() => props.onTradeBook(props)}>Trade</button>
+      <button
+        className="waves-effect waves-light btn"
+        onClick={() => props.onTradeBook(props)}
+      >
+        Trade
+      </button>
     ) : null;
 
   let onHoldText =
@@ -17,7 +22,7 @@ const BookTradeItem = props => {
     ) : null;
 
   return (
-    <div className="BookItem">
+    <div className="BookItem hoverable">
       <h5 className="book-item-title">{props.title}</h5>
       <p className="book-item-author">{props.author}</p>
       <p className="book-item-link">
@@ -26,7 +31,10 @@ const BookTradeItem = props => {
       <div className="book-item-image">
         <img src={props.image} alt={props.title} width="128" />
       </div>
-      <p className="book-item-owner">Owned by: {props.username} </p>
+      <p className="book-item-owner">Owner:</p>
+      <p className="book-item-owner-name">
+        <em>{props.username}</em>
+      </p>
       {tradeBtn}
       {onHoldText}
     </div>

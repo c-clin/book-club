@@ -1,0 +1,8 @@
+.Form .form-container {
+  margin: 0 auto;
+  margin-top: 50px;
+  max-width: 500px;
+  padding: 15px;
+  border: 2px double pink;
+  box-shadow: 2px 2px 2px #bbbaba;
+}

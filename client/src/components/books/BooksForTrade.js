@@ -29,13 +29,19 @@ export class BooksForTrade extends Component {
     });
 
     const errorMessage = (
-      <p>
+      <p
+        style={{
+          margin: '0',
+          padding: '10px 40px',
+          backgroundColor: '#ffecd4'
+        }}
+      >
         You must <Link to="/login">log in</Link> to trade!
       </p>
     );
 
     return (
-      <div>
+      <div className="layout-container" style={{ paddingTop: '60px' }}>
         {this.props.auth.isAuthenticated ? null : errorMessage}
         <div className="BookItem-container">{renderContent}</div>
       </div>

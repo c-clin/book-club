@@ -3,12 +3,17 @@
   box-sizing: border-box;
 }
 
+.Header {
+  position: relative;
+  z-index: 1;
+}
+
 .Header .nav-wrapper .header {
   font-family: 'Rye', cursive;
+  margin-left: 15px;
 }
 
 .Header .dropdown-content {
-  /* display: block; */
   width: 140px;
   right: 0;
   top: 50px;

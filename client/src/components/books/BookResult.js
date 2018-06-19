@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BookResultItem from './BookResultItem';
 import * as actions from '../../store/actions';
+import '../../css/BookItemContainer.css';
 
 const BookResult = props => {
   console.log(props.books);
@@ -33,9 +34,8 @@ const BookResult = props => {
 
   return (
     <div>
-      <h3>this is the book result component</h3>
       {props.auth.isAuthenticated ? null : errorMessage}
-      {renderContent}
+      <div className="BookItem-container">{renderContent}</div>
     </div>
   );
 };

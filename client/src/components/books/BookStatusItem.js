@@ -8,14 +8,22 @@ export class BookStatusItem extends Component {
     switch (this.props.status) {
       case 'available':
         return (
-          <button onClick={() => this.props.onTradeStatus(this.props)}>
-            Keep this book!
+          <button
+            className="waves-effect waves-light btn"
+            style={{ fontSize: '12px' }}
+            onClick={() => this.props.onTradeStatus(this.props)}
+          >
+            Keep book
           </button>
         );
       case 'not-available':
         return (
-          <button onClick={() => this.props.onTradeStatus(this.props)}>
-            Trade this book!
+          <button
+            className="waves-effect waves-light btn"
+            style={{ fontSize: '12px' }}
+            onClick={() => this.props.onTradeStatus(this.props)}
+          >
+            Trade book
           </button>
         );
       case 'pending':
@@ -27,7 +35,7 @@ export class BookStatusItem extends Component {
 
   render() {
     return (
-      <div className="BookItem">
+      <div className="BookItem hoverable">
         <h5 className="book-item-title">{this.props.title}</h5>
         <p className="book-item-author">By: {this.props.author}</p>
         <p className="book-item-link">

@@ -25,7 +25,7 @@ class Landing extends Component {
             <div className="row">
               <div className="header col s6 offset-s3 center-align">
                 <h1>Book Club</h1>
-                <p>Join a community of book lovers!</p>
+                <p>Join a community of friendly book lovers!</p>
               </div>
             </div>
           </form>
@@ -36,19 +36,24 @@ class Landing extends Component {
             <div className="col s4 center-align">
               <i className="medium material-icons">library_books</i>
               <h5>Book Catalogue</h5>
-              <p>See the available books from other users</p>
+              <p>
+                Access a list of all the available books from other users that
+                are ready to be borrowed.
+              </p>
             </div>
             <div className="col s4 center-align">
               <i className="medium material-icons">search</i>
               <h5>Book Search</h5>
-              <p>Explore from an extensive library of books</p>
+              <p>
+                Explore from an extensive library of books and easily find more
+                information if needed.
+              </p>
             </div>
             <div className="col s4 center-align">
               <i className="medium material-icons">swap_horiz</i>
               <h5>Book Exchange</h5>
               <p>
-                Manage book trade/exchanges safely through your private
-                dashboard
+                Manage the book exchanges safely through your private dashboard
               </p>
             </div>
           </div>

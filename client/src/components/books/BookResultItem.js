@@ -1,20 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
+import '../../css/BookItem.css';
 
 const BookResultItem = props => {
   let addBookBtn = props.auth.isAuthenticated ? (
-    <button onClick={() => props.onAddBook(props)}>Add Book</button>
+    <button
+      className="waves-effect waves-light btn"
+      onClick={() => props.onAddBook(props)}
+    >
+      Add Book
+    </button>
   ) : null;
 
   return (
-    <div style={{ width: '150px' }}>
-      <h5>{props.title}</h5>
-      <p>{props.author}</p>
-      <p>
-        <a href={props.link}>Website</a>
+    <div className="BookItem hoverable">
+      <h5 className="book-item-title">{props.title}</h5>
+      <p className="book-item-author">By: {props.author}</p>
+      <p className="book-item-link">
+        <a href={props.link} target="_blank">
+          Website
+        </a>
       </p>
-      <img src={props.image} alt={props.title} width="128" />
+      <div className="book-item-image">
+        <img src={props.image} alt={props.title} width="128" />
+      </div>
       {addBookBtn}
     </div>
   );

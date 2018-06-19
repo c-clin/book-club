@@ -1,19 +1,25 @@
 .BookItem {
-  width: 150px;
+  width: 160px;
   text-align: center;
   padding: 10px;
-  background-color: #faded0;
+  background-color: #ec9696;
   margin: 10px;
+  height: 350px;
+  overflow: scroll;
 }
 
 .BookItem .book-item-title {
   font-size: 1em;
   margin: 5px 0px;
+  color: #fff;
+  font-weight: bold;
 }
 
 .BookItem .book-item-author {
   font-size: 0.8em;
   margin: 5px 0px;
+  color: #fff;
+  font-weight: 300;
 }
 
 .BookItem .book-item-link {
@@ -22,7 +28,8 @@
 }
 
 .BookItem .book-item-link a {
-  color: #abcdef;
+  color: #66e8ff;
+  font-size: 0.8em;
 }
 
 .BookItem .book-item-image {
@@ -32,4 +39,14 @@
 
 .BookItem .book-item-owner {
   font-size: 0.9em;
+  margin: 2px 0px;
+  color: #fff;
+  font-weight: 300;
+}
+
+.book-item-owner-name {
+  font-size: 0.9em;
+  margin: 2px 0px;
+  color: rgb(81, 111, 177);
+  font-weight: bold;
 }

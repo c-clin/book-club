@@ -37,12 +37,13 @@ class App extends Component {
           <div>
             <Header />
             <Route exact path="/" component={Landing} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/all-books" component={BooksForTrade} />
+            <Route exact path="/search" component={BookResult} />
             <div className="container">
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/all-books" component={BooksForTrade} />
-              <Route exact path="/search" component={BookResult} />
               <Route exact path="/trade-request" component={TradeRequests} />
               <Route
                 exact

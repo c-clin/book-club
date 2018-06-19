@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions';
 import _ from 'lodash';
+import '../css/Forms.css';
 
 class Register extends Component {
   state = {
@@ -32,8 +33,8 @@ class Register extends Component {
   render() {
     const errMsg = <p style={{ color: 'red' }}>Please fill in all fields!</p>;
     return (
-      <div>
-        <form className="col s6" style={{ marginTop: '30px' }}>
+      <div className="Form">
+        <form className="col s6 form-container">
           <div className="row">
             <div
               className="input-field col s8 offset-s2"
