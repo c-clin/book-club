@@ -82,9 +82,8 @@ export const onAddBook = bookData => dispatch => {
 
 // delete a book from user's list
 export const onDeleteBook = bookData => dispatch => {
-  console.log(bookData);
   const finalData = {
-    apiID: bookData
+    bookID: bookData
   };
 
   axiosApi

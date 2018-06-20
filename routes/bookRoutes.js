@@ -56,10 +56,13 @@ router.post(
   '/delete-book',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { apiID } = req.body;
-    Book.deleteOne({ apiID }, (err, doc) => {
+    const { bookID } = req.body;
+    Book.deleteOne({ _id: bookID }, (err, doc) => {
       if (err) console.log(err);
-      res.send('delete success');
+      Trade.deleteOne({ book: bookID }, (err, doc) => {
+        if (err) console.log(err);
+        res.send('delete both success');
+      });
     });
   }
 );

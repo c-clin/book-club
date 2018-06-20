@@ -22,7 +22,6 @@ class Header extends Component {
   };
 
   checkEnterHandler = e => {
-    console.log(e.keyCode);
     if (e.keyCode === 13) {
       e.preventDefault();
       this.searchBookHandler();
