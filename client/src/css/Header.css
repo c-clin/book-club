@@ -27,6 +27,11 @@
   transform: scaleX(1) scaleY(1);
 }
 
+.Header .input-li {
+  position: absolute;
+  left: 40%;
+}
+
 .Header .book-search {
   height: 40px;
   padding: 10px;
@@ -36,6 +41,7 @@
 }
 
 .Header .book-search input {
+  width: 150px;
   border: 0;
   margin: 0;
   border-bottom: transparent;
@@ -60,4 +66,45 @@ input:not([type]):focus:not([readonly]) {
   background-color: rgba(160, 160, 160, 0.863);
   padding: 1px 5px 1px 5px;
   border-radius: 50%;
+}
+
+@media (max-width: 800px) {
+  .Header .nav-wrapper .header {
+    margin-left: 5px;
+    font-size: 1.5em;
+  }
+
+  .Header .input-li {
+    position: realtive;
+    left: 30%;
+  }
+
+  .Header .book-search input {
+    width: 100px;
+  }
+}
+
+@media (max-width: 600px) {
+  .Header .nav-wrapper .header {
+    font-size: 1em;
+  }
+
+  .Header .book-search {
+    margin-top: 8px;
+    border: 1.5px solid #a5a5a5;
+  }
+
+  .Header .book-search input {
+    color: #a5a5a5;
+  }
+
+  .Header .book-search i {
+    color: #a5a5a5;
+  }
+
+  .Header .input-li {
+    position: realtive;
+    left: 35%;
+    top: 100%;
+  }
 }

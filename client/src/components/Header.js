@@ -118,16 +118,10 @@ class Header extends Component {
             </Link>
             {this.props.auth.isAuthenticated ? authLinks : guestLinks}
             <ul className="right">
-              <li
-                style={{
-                  position: 'absolute',
-                  left: '40%'
-                }}
-              >
+              <li className="input-li">
                 <form className="book-search valign-wrapper">
                   <input
                     onChange={this.inputChangeHandler}
-                    style={{ width: '150px' }}
                     value={this.state.query}
                     placeholder="Search book.."
                     onKeyDown={this.checkEnterHandler}

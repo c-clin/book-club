@@ -9,3 +9,9 @@
   border: 2px double pink;
   box-shadow: 2px 2px 2px #bbbaba;
 }
+
+@media (max-width: 499px) {
+  .Form .form-container {
+    width: 90%;
+  }
+}
