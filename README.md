@@ -13,4 +13,4 @@ This is a fullstack app that allows users to borrow/exchange books. It showcases
 - Redux
 - Mongoose
 
-### Website Link: [https://gentle-fortress-90903.herokuapp.com/]
+### Website Link: [https://bookclub28.herokuapp.com/]
