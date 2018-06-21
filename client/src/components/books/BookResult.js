@@ -6,11 +6,6 @@ import * as actions from '../../store/actions';
 import '../../css/BookItemContainer.css';
 
 const BookResult = props => {
-  console.log(props.books);
-  // let addBookBtn = props.auth.isAuthenticated ? (
-  //   <button onClick={props.onAddBook(...props)}>Add Book</button>
-  // ) : null;
-
   const renderContent = props.books.searchList.map(book => {
     return (
       <div>

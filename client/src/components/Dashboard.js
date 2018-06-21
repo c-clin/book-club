@@ -6,8 +6,11 @@ import BookStatusItem from './books/BookStatusItem';
 import '../css/BookItemContainer.css';
 
 export class Dashboard extends Component {
-  componentDidMount = () => {
+  componentWillMount() {
     this.props.books.loading = true;
+  }
+
+  componentDidMount = () => {
     this.props.onLoadList();
   };
 
@@ -36,8 +39,21 @@ export class Dashboard extends Component {
     let dashBoardContent;
     if (this.props.books.loading === true) {
       dashBoardContent = (
-        <div className="progress">
-          <div className="indeterminate" />
+        <div
+          className="preloader-wrapper big active"
+          style={{ position: 'absolute', left: '50%', top: '45%' }}
+        >
+          <div className="spinner-layer spinner-green-only">
+            <div className="circle-clipper left">
+              <div className="circle" />
+            </div>
+            <div className="gap-patch">
+              <div className="circle" />
+            </div>
+            <div className="circle-clipper right">
+              <div className="circle" />
+            </div>
+          </div>
         </div>
       );
     } else {

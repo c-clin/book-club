@@ -7,6 +7,10 @@ import BookTradeItem from './BookTradeItem';
 import '../../css/BookItemContainer.css';
 
 export class BooksForTrade extends Component {
+  componentWillMount = () => {
+    this.props.books.loading = true;
+  };
+
   componentDidMount = () => {
     this.props.onLoadList();
   };
@@ -50,13 +54,37 @@ export class BooksForTrade extends Component {
       </p>
     );
 
-    return (
-      <div className="layout-container" style={{ paddingTop: '30px' }}>
-        {this.props.auth.isAuthenticated ? null : errorMessage}
-        {this.props.auth.isAuthenticated ? welcomeMessage : null}
-        <div className="BookItem-container">{renderContent}</div>
-      </div>
-    );
+    let booksForTradeContent;
+    if (this.props.books.loading === true) {
+      booksForTradeContent = (
+        <div
+          className="preloader-wrapper big active"
+          style={{ position: 'absolute', left: '50%', top: '45%' }}
+        >
+          <div className="spinner-layer spinner-green-only">
+            <div className="circle-clipper left">
+              <div className="circle" />
+            </div>
+            <div className="gap-patch">
+              <div className="circle" />
+            </div>
+            <div className="circle-clipper right">
+              <div className="circle" />
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      booksForTradeContent = (
+        <div className="layout-container" style={{ paddingTop: '30px' }}>
+          {this.props.auth.isAuthenticated ? null : errorMessage}
+          {this.props.auth.isAuthenticated ? welcomeMessage : null}
+          <div className="BookItem-container">{renderContent}</div>
+        </div>
+      );
+    }
+
+    return <div>{booksForTradeContent}</div>;
   }
 }
 

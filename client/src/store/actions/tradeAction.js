@@ -60,13 +60,12 @@ export const onTradeRequest = data => dispatch => {
     bookID: data.bookID,
     title: data.title
   };
-  console.log(tradeData);
   axiosApi
     .post('/trade/trade-request', tradeData, {
       headers: { Authorization: localStorage.jwtToken }
     })
     .then(res => dispatch(onLoadBooksForTrade()))
-    .catch(err => alert(err.response.data.err));
+    .catch(err => alert(err.response.data.error));
 };
 
 // toggle whether to put a book on user's list up for trade

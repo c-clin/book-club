@@ -26,7 +26,8 @@ const reducer = (state = initialState, action) => {
     case actionTypes.LOAD_AVAILABLE_BOOKS:
       return {
         ...state,
-        availableBooks: action.availableBooks
+        availableBooks: action.availableBooks,
+        loading: false
       };
     case actionTypes.LOAD_TRADE_REQUESTS:
       return {
