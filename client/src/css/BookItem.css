@@ -6,6 +6,12 @@
   margin: 10px;
   height: 370px;
   overflow: scroll;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+
+.BookItem:hover {
+  transform: translateY(-10px);
 }
 
 .BookItem .book-item-title {
