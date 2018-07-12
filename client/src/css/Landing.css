@@ -46,6 +46,7 @@
   /* background-color: #fff5e9;
   color: #3b3b3b; */
   background-image: linear-gradient(to right, #556270, #ff6b6b);
+  background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
 }
@@ -53,6 +54,7 @@
 .Landing .material-icons {
   transition: all 0.3s ease;
   background-image: linear-gradient(to right, #556270, #ff6b6b);
+  background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
 }
