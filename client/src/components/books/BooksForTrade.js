@@ -47,7 +47,7 @@ export class BooksForTrade extends Component {
         style={{
           margin: '0',
           padding: '85px 40px 0 40px',
-          backgroundColor: '#ffecd4'
+          backgroundColor: '#fffcf8da'
         }}
       >
         You must <Link to="/login">log in</Link> to trade!

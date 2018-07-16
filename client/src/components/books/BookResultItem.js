@@ -44,7 +44,6 @@ export class BookResultItem extends Component {
 
 const mapStateToProps = state => {
   return {
-    // books: state.books,
     auth: state.auth
   };
 };

@@ -1,13 +1,15 @@
 .Form {
   padding-top: 120px;
+  background-color: #fffcf8da;
 }
 
 .Form .form-container {
   margin: 0 auto;
   max-width: 500px;
-  padding: 15px;
+  padding: 30px 15px;
   border: 2px double pink;
-  box-shadow: 2px 2px 2px #bbbaba;
+  box-shadow: 0.5rem 1rem 3rem rgba(0, 0, 0, 0.2);
+  background-color: #fff;
 }
 
 @media (max-width: 499px) {

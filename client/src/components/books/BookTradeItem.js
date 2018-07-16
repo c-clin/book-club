@@ -47,7 +47,6 @@ const BookTradeItem = props => {
 
 const mapStateToProps = state => {
   return {
-    // books: state.books,
     auth: state.auth
   };
 };

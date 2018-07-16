@@ -11,6 +11,7 @@
 
 .Header nav {
   background-color: rgba(238, 110, 114, 0.8);
+  font-weight: 300;
 }
 
 .Header .nav-wrapper .header {

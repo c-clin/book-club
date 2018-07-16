@@ -51,7 +51,7 @@ const BookResult = props => {
     bookResultContent = (
       <div>
         {props.auth.isAuthenticated ? null : errorMessage}
-        <div className="BookItem-container"> {renderContent}</div>;
+        <div className="BookItem-container"> {renderContent}</div>
       </div>
     );
   }
