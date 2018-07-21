@@ -61,11 +61,10 @@ input:not([type]):focus:not([readonly]) {
 
 .req-count {
   color: white;
-  font-size: 0.7em;
+  font-size: 0.8em;
   margin: 0 5px;
-  border: 1px solid rgb(66, 66, 66);
-  background-color: rgba(160, 160, 160, 0.863);
-  padding: 1px 5px 1px 5px;
+  background-color: #ec9696;
+  padding: 3px 7px;
   border-radius: 50%;
 }
 

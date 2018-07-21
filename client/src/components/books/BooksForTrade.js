@@ -56,24 +56,7 @@ export class BooksForTrade extends Component {
 
     let booksForTradeContent;
     if (this.props.books.loading === true) {
-      booksForTradeContent = (
-        <div
-          className="preloader-wrapper big active"
-          style={{ position: 'absolute', left: '50%', top: '45%' }}
-        >
-          <div className="spinner-layer spinner-green-only">
-            <div className="circle-clipper left">
-              <div className="circle" />
-            </div>
-            <div className="gap-patch">
-              <div className="circle" />
-            </div>
-            <div className="circle-clipper right">
-              <div className="circle" />
-            </div>
-          </div>
-        </div>
-      );
+      booksForTradeContent = <div className="loader">Loading...</div>;
     } else {
       booksForTradeContent = (
         <div className="layout-container" style={{ paddingTop: '30px' }}>

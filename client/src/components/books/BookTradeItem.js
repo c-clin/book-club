@@ -35,9 +35,11 @@ const BookTradeItem = props => {
       <div className="book-item-image">
         <img src={props.image} alt={props.title} width="128" />
       </div>
-      <p className="book-item-owner">Owner:</p>
-      <p className="book-item-owner-name">
-        <em>{props.username}</em>
+      <p className="book-item-owner">
+        Owner:
+        <span>
+          <em>{props.username}</em>
+        </span>
       </p>
       {tradeBtn}
       {onHoldText}
