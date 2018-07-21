@@ -7,7 +7,8 @@ import '../css/Header.css';
 class Header extends Component {
   state = {
     query: '',
-    openDropdown: false
+    openDropdown: false,
+    openBurgerIcon: false
   };
 
   inputChangeHandler = event => {
@@ -28,15 +29,24 @@ class Header extends Component {
     }
   };
 
+  loginHandler = e => {
+    e.preventDefault();
+    this.props.history.push('/login');
+    this.setState({ openDropdown: false });
+  };
+
   logoutHandler = e => {
     e.preventDefault();
     this.props.history.push('/all-books');
     this.props.onLogout();
+    this.setState({ openDropdown: false });
   };
 
   toggleDropdown = () => {
-    this.props.loadRequests(this.props.auth.user.id, 'pending');
-    this.props.loadRequests(this.props.auth.user.id, 'trade');
+    if (this.props.auth.user) {
+      this.props.loadRequests(this.props.auth.user.id, 'pending');
+      this.props.loadRequests(this.props.auth.user.id, 'trade');
+    }
     let currentDropdown = this.state.openDropdown;
     this.setState({ openDropdown: !currentDropdown });
   };
@@ -48,6 +58,12 @@ class Header extends Component {
         className="dropdown-content"
         style={{ display: this.state.openDropdown ? 'block' : 'none' }}
       >
+        <li>
+          <Link to="all-books">All Books</Link>
+        </li>
+        <li>
+          <Link to="/dashboard">My Books</Link>
+        </li>
         <li>
           <Link to="/trade-request">
             Trade Requests &nbsp;
@@ -75,11 +91,6 @@ class Header extends Component {
     const authLinks = (
       <ul className="right">
         <li>
-          <Link to="/dashboard" className="right">
-            My Books
-          </Link>
-        </li>
-        <li>
           <a
             className="dropdown-trigger"
             href="#!"
@@ -92,31 +103,56 @@ class Header extends Component {
       </ul>
     );
 
-    const guestLinks = (
-      <ul className="right">
+    const guestDropdown = (
+      <ul
+        id="dropdown1"
+        className="dropdown-content"
+        style={{ display: this.state.openDropdown ? 'block' : 'none' }}
+      >
         <li>
-          <Link to="/login" className="right">
+          <Link to="all-books">All Books</Link>
+        </li>
+        <li>
+          <a href="" onClick={this.loginHandler}>
             Login
-          </Link>
+          </a>
         </li>
         <li>
-          <Link to="/register" className="right">
-            Register
-          </Link>
+          <Link to="/register">Register</Link>
         </li>
+      </ul>
+    );
+
+    const guestLinks = (
+      <ul className="nav-burger right">
+        <a
+          className="dropdown-trigger"
+          href="#!"
+          data-target="dropdown1"
+          onClick={this.toggleDropdown}
+        >
+          <li>
+            <div className="nav-burger-icon">
+              <span className="nav-burger-icon-line" />
+              <span className="nav-burger-icon-line" />
+              <span className="nav-burger-icon-line" />
+            </div>
+          </li>
+        </a>
       </ul>
     );
 
     return (
       <div className="Header">
-        {this.props.auth.isAuthenticated ? authDropdown : null}
+        {this.props.auth.isAuthenticated ? authDropdown : guestDropdown}
         <nav>
           <div className="nav-wrapper">
             <Link to="/" className="left brand-logo header">
               Book Club
             </Link>
+
             {this.props.auth.isAuthenticated ? authLinks : guestLinks}
-            <ul className="right">
+            <ul className="input-ul">
               <li className="input-li">
                 <form className="book-search valign-wrapper">
                   <input
@@ -133,11 +169,6 @@ class Header extends Component {
                     search
                   </i>
                 </form>
-              </li>
-              <li>
-                <Link to="all-books" className="right">
-                  All Books
-                </Link>
               </li>
             </ul>
           </div>

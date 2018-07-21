@@ -68,6 +68,24 @@ input:not([type]):focus:not([readonly]) {
   border-radius: 50%;
 }
 
+.nav-burger-icon {
+  width: 50px;
+  height: 31px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 17px auto;
+}
+
+.nav-burger-icon-line {
+  display: inline-block;
+  height: 2px;
+  width: 60%;
+  background-color: white;
+}
+
 @media (max-width: 800px) {
   .Header .nav-wrapper .header {
     margin-left: 5px;
@@ -78,10 +96,6 @@ input:not([type]):focus:not([readonly]) {
     position: realtive;
     left: 30%;
   }
-
-  .Header .book-search input {
-    width: 100px;
-  }
 }
 
 @media (max-width: 600px) {
@@ -89,22 +103,7 @@ input:not([type]):focus:not([readonly]) {
     font-size: 1em;
   }
 
-  .Header .book-search {
-    margin-top: 8px;
-    border: 1.5px solid #a5a5a5;
-  }
-
-  .Header .book-search input {
-    color: #a5a5a5;
-  }
-
-  .Header .book-search i {
-    color: #a5a5a5;
-  }
-
-  .Header .input-li {
-    position: realtive;
-    left: 35%;
-    top: 100%;
+  .nav-burger-icon {
+    display: flex;
   }
 }
