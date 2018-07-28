@@ -134,8 +134,6 @@ class Header extends Component {
           <li>
             <div className="nav-burger-icon">
               <span className="nav-burger-icon-line" />
-              <span className="nav-burger-icon-line" />
-              <span className="nav-burger-icon-line" />
             </div>
           </li>
         </a>
